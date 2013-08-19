@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>res</name>
-			<type>2</type>
-			<location>/home/cooper/Git_Repos/League_of_Mages-master/res</location>
-		</link>
-	</linkedResources>
 </projectDescription>

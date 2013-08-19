@@ -20,8 +20,10 @@ public class Player extends Component{
 
 	private static final long serialVersionUID = 3320422621904168014L;
 	
-	public static int x;
-	public static int y;
+	public static double x;
+	public static double y;
+	
+	public static double hypoto;
 
 	public Player(int startingX, int startingY) {
 		x = startingX;
@@ -30,14 +32,27 @@ public class Player extends Component{
 	
 	public static void draw(Graphics g){
 		g.setColor(Color.blue);
-		g.fillOval(x, y, 10, 10);
+		g.fillOval((int)Math.ceil(x/1.0),(int)Math.ceil(y/1.0), 10, 10);
 	}
 	
 	public static void update(){
-		y+=KeyInputManager.s*GameLoop.delta;
-		y-=KeyInputManager.w*GameLoop.delta;
-		x+=KeyInputManager.d*GameLoop.delta;
-		x-=KeyInputManager.a*GameLoop.delta;
+		if(KeyInputManager.s != 0 &&KeyInputManager.d != 0){
+			y+=(double)(KeyInputManager.s * GameLoop.delta)/Math.sqrt(2.0);
+			x+=(double)(KeyInputManager.d * GameLoop.delta)/Math.sqrt(2.0);
+		}else if(KeyInputManager.a != 0 &&KeyInputManager.w != 0){
+			y-=(double)(KeyInputManager.w * GameLoop.delta)/Math.sqrt(2.0);
+			x-=(double)(KeyInputManager.a * GameLoop.delta)/Math.sqrt(2.0);
+		}else if(KeyInputManager.w != 0 &&KeyInputManager.d != 0){
+			y-=(double)(KeyInputManager.w * GameLoop.delta)/Math.sqrt(2.0);
+			x+=(double)(KeyInputManager.d * GameLoop.delta)/Math.sqrt(2.0);
+		}else if(KeyInputManager.a != 0 &&KeyInputManager.s != 0){
+			y+=(double)(KeyInputManager.s * GameLoop.delta)/Math.sqrt(2.0);
+			x-=(double)(KeyInputManager.a * GameLoop.delta)/Math.sqrt(2.0);
+		}else{
+			y+=(double)(KeyInputManager.s * GameLoop.delta);
+			y-=(double)KeyInputManager.w * GameLoop.delta;
+			x+=(double)(KeyInputManager.d * GameLoop.delta);
+			x-=(double)KeyInputManager.a * GameLoop.delta;
+		}
 	}
-
 }

@@ -25,10 +25,10 @@ public class Reference {
 	
 	public static int windowWidth = 100;
 	public static int windowHeight = 100;
-	
+	public static int playerSpeed = 75;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.01";
+	public static String version = "0.0.02";
 	public static String fps = "0";
 	
 	public static boolean devBuild = true;
@@ -36,6 +36,8 @@ public class Reference {
 	public static JFrame mainWindow;
 	
 	public static JPanel gamePanel;
+	
+	public static GameLoop gl;
 
 	public Reference() {
 		gamePanel = new GamePanel();

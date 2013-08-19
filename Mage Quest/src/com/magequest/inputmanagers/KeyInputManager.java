@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import com.magequest.main.GameLoop;
+import com.magequest.main.Reference;
 
 /**
  * <b>Class Name</b>
@@ -27,21 +28,25 @@ public class KeyInputManager implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+			Reference.exit();
+		}
+		
+		
 		if(e.getKeyCode()==KeyEvent.VK_W ){
-			w = 5;
+			w = Reference.playerSpeed;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_S ){
-			s = 5;
+			s = Reference.playerSpeed;
 			
 		}
 		if(e.getKeyCode()==KeyEvent.VK_D ){
-			d = 5;
+			d = Reference.playerSpeed;
 			
 		}
 		if(e.getKeyCode()==KeyEvent.VK_A ){
-			a = 5;
+			a = Reference.playerSpeed;
 		}
-		System.out.println(GameLoop.delta);
 	}
 
 	@Override

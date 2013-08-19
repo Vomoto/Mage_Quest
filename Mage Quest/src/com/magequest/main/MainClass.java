@@ -16,7 +16,7 @@ public class MainClass {
 
 	public MainClass() {
 		new Reference();
-		new GameLoop();
+		Reference.gl = new GameLoop();
 		Reference.mainWindow = new MainWindow();
 		Reference.mainWindow.add(Reference.gamePanel);
 	}

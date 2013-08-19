@@ -16,7 +16,9 @@ public class GameLoop {
 	public static int fps = 0;
 	public static int frameCount = 0;
 	public static String atComponent = "";
-	public static float delta;
+	public static double delta;
+	static long now = System.nanoTime();
+	static long earlier = System.nanoTime();
 	
 	public GameLoop(){
 		runGameLoop();
@@ -45,14 +47,14 @@ public class GameLoop {
 	      final double TIME_BETWEEN_UPDATES = 1000000000 / GAME_HERTZ;
 	      //At the very most we will update the game this many times before a new render.
 	      //If you're worried about visual hitches more than perfect timing, set this to 1.
-	      final int MAX_UPDATES_BEFORE_RENDER = 5;
+	      final int MAX_UPDATES_BEFORE_RENDER = 500;
 	      //We will need the last update time.
 	      double lastUpdateTime = System.nanoTime();
 	      //Store the last time we rendered.
 	      double lastRenderTime = System.nanoTime();
 	      
 	      //If we are able to get as high as this FPS, don't render again.
-	      final double TARGET_FPS = 1200;
+	      final double TARGET_FPS = 1000;
 	      final double TARGET_TIME_BETWEEN_RENDERS = 1000000000 / TARGET_FPS;
 	      
 	      //Simple way of finding FPS.
@@ -60,21 +62,20 @@ public class GameLoop {
 	      
 	      while (running)
 	      {
-	    	  double earlier = 0;
-	         double now = System.nanoTime();
 	         int updateCount = 0;
-	         
-	         delta = (float) (now - earlier);
+	         now = System.nanoTime();
+	         delta = (double) ((now*0.000000001) - (earlier*0.000000001));
+	         earlier = System.nanoTime();
 	         
 	         if (!paused)
 	         {
 	             //Do as many game updates as we need to, potentially playing catchup.
-	            while( now - lastUpdateTime > TIME_BETWEEN_UPDATES && updateCount < MAX_UPDATES_BEFORE_RENDER )
+	             while( now - lastUpdateTime > TIME_BETWEEN_UPDATES && updateCount < MAX_UPDATES_BEFORE_RENDER )
 	            {
-	               updateGame();
 	               lastUpdateTime += TIME_BETWEEN_UPDATES;
+	            } 
 	               updateCount++;
-	            }
+	               updateGame();
 	   
 	            //If for some reason an update takes forever, we don't want to do an insane number of catchups.
 	            //If you were doing some sort of game that needed to keep EXACT time, you would get rid of this.
@@ -92,7 +93,7 @@ public class GameLoop {
 	            int thisSecond = (int) (lastUpdateTime / 1000000000);
 	            if (thisSecond > lastSecondTime)
 	            {
-	               System.out.println("NEW SECOND " + thisSecond + " " + frameCount);
+	               //System.out.println("NEW SECOND " + thisSecond + " " + frameCount);
 	               fps = frameCount;
 	               frameCount = 0;
 	               lastSecondTime = thisSecond;
@@ -107,9 +108,7 @@ public class GameLoop {
 	               //You can remove this line and it will still work (better), your CPU just climbs on certain OSes.
 	               //FYI on some OS's this can cause pretty bad stuttering. Scroll down and have a look at different peoples' solutions to this.
 	               try {Thread.sleep(1);} catch(Exception e) {} 
-	            
 	               now = System.nanoTime();
-	               earlier = System.nanoTime();
 	            }
 	         }
 	      }
