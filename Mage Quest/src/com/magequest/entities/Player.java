@@ -8,7 +8,9 @@ import java.awt.Component;
 import java.awt.Graphics;
 
 import com.magequest.inputmanagers.KeyInputManager;
+import com.magequest.magic.MagicRangeMarker;
 import com.magequest.main.GameLoop;
+import com.magequest.main.Reference;
 
 /**
  * <b>Player Component</b>
@@ -20,39 +22,71 @@ public class Player extends Component{
 
 	private static final long serialVersionUID = 3320422621904168014L;
 	
-	public static double x;
-	public static double y;
+	public double x;
+	public double y;
+	public double centerX;
+	public double centerY;
+	public int width = 10;
+	public int height = 10;
 	
-	public static double hypoto;
+	public  int speed = Reference.playerSpeed;
+	
+	public  boolean sprinting = false;
+	public  boolean spellCastReady = false;
+	
+	public  double hypoto;
 
 	public Player(int startingX, int startingY) {
 		x = startingX;
 		y = startingY;
+		centerX = x-(width/2);
+		centerY = y-(height/2);
 	}
 	
-	public static void draw(Graphics g){
-		g.setColor(Color.blue);
-		g.fillOval((int)Math.ceil(x/1.0),(int)Math.ceil(y/1.0), 10, 10);
-	}
-	
-	public static void update(){
-		if(KeyInputManager.s != 0 &&KeyInputManager.d != 0){
-			y+=(double)(KeyInputManager.s * GameLoop.delta)/Math.sqrt(2.0);
-			x+=(double)(KeyInputManager.d * GameLoop.delta)/Math.sqrt(2.0);
-		}else if(KeyInputManager.a != 0 &&KeyInputManager.w != 0){
-			y-=(double)(KeyInputManager.w * GameLoop.delta)/Math.sqrt(2.0);
-			x-=(double)(KeyInputManager.a * GameLoop.delta)/Math.sqrt(2.0);
-		}else if(KeyInputManager.w != 0 &&KeyInputManager.d != 0){
-			y-=(double)(KeyInputManager.w * GameLoop.delta)/Math.sqrt(2.0);
-			x+=(double)(KeyInputManager.d * GameLoop.delta)/Math.sqrt(2.0);
-		}else if(KeyInputManager.a != 0 &&KeyInputManager.s != 0){
-			y+=(double)(KeyInputManager.s * GameLoop.delta)/Math.sqrt(2.0);
-			x-=(double)(KeyInputManager.a * GameLoop.delta)/Math.sqrt(2.0);
+	public void draw(Graphics g){
+		if(spellCastReady){
+			MagicRangeMarker.draw(g,100,MagicRangeMarker.CIRCLE);
 		}else{
-			y+=(double)(KeyInputManager.s * GameLoop.delta);
-			y-=(double)KeyInputManager.w * GameLoop.delta;
-			x+=(double)(KeyInputManager.d * GameLoop.delta);
-			x-=(double)KeyInputManager.a * GameLoop.delta;
+			
 		}
+		
+		g.setColor(Color.blue);
+		g.fillOval((int)Math.ceil(x/1.0),(int)Math.ceil(y/1.0), width, height);
+	}
+	
+	public  void update(){
+		if(sprinting){
+			speed = Reference.playerSprintSpeed;
+		}else{
+			speed = Reference.playerSpeed;
+		}
+		if(KeyInputManager.s && KeyInputManager.d){
+			y+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			x+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+		}else if(KeyInputManager.a && KeyInputManager.w){
+			y-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			x-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+		}else if(KeyInputManager.w && KeyInputManager.d){
+			y-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			x+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+		}else if(KeyInputManager.a && KeyInputManager.s){
+			y+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			x-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+		}else{
+			if(KeyInputManager.s){
+				y+=speed * GameLoop.delta;
+			}
+			if(KeyInputManager.w){
+				y-= speed * GameLoop.delta;
+			}
+			if(KeyInputManager.d){
+				x+= speed * GameLoop.delta;
+			}
+			if(KeyInputManager.a){
+			x-= speed * GameLoop.delta;
+			}
+		}
+		centerX = x+(width/2);
+		centerY = y+(height/2);
 	}
 }

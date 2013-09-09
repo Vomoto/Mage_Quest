@@ -1,11 +1,6 @@
 package com.magequest.main;
 
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.KeyListener;
-
-import javax.swing.JFrame;
 
 
 
@@ -26,7 +21,7 @@ public class GameLoop {
 	
 	
 	//Starts a new thread and runs the game loop in it.
-	   public static void runGameLoop()
+	   public void runGameLoop()
 	   {
 	      Thread loop = new Thread()
 	      {
@@ -39,7 +34,7 @@ public class GameLoop {
 	   }
 	   
 	   //Only run this in another Thread!
-	   private static void gameLoop()
+	   private void gameLoop()
 	   {
 	      //This value would probably be stored elsewhere.
 	      final double GAME_HERTZ = 60.0;
@@ -54,7 +49,7 @@ public class GameLoop {
 	      double lastRenderTime = System.nanoTime();
 	      
 	      //If we are able to get as high as this FPS, don't render again.
-	      final double TARGET_FPS = 1000;
+	      final double TARGET_FPS = 6000;
 	      final double TARGET_TIME_BETWEEN_RENDERS = 1000000000 / TARGET_FPS;
 	      
 	      //Simple way of finding FPS.
@@ -114,7 +109,7 @@ public class GameLoop {
 	      }
 	   }
 	   
-	   private static void updateGame(){
+	   private void updateGame(){
 		   Reference.update();
 	   }
 	   

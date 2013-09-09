@@ -3,8 +3,6 @@
  */
 package com.magequest.main;
 
-import javax.swing.JFrame;
-
 /**
  * <b>Main Class</b>
  * <p>Class that holds main thread and
@@ -17,8 +15,8 @@ public class MainClass {
 	public MainClass() {
 		new Reference();
 		Reference.gl = new GameLoop();
-		Reference.mainWindow = new MainWindow();
-		Reference.mainWindow.add(Reference.gamePanel);
+		Reference.mainWindow = new Window();
+		Reference.mainWindow.addWindow(Reference.gamePanel);
 	}
 
 	/**

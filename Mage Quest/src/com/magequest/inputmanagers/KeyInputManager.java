@@ -6,21 +6,20 @@ package com.magequest.inputmanagers;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import com.magequest.main.GameLoop;
 import com.magequest.main.Reference;
 
 /**
- * <b>Class Name</b>
- * <p>Description</p>
+ * <b>Key Input Manager</b>
+ * <p>Handles all the key inputs</p>
  * <p></p>
  * @author Cooper Mahring
  */
 public class KeyInputManager implements KeyListener{
 
-	public static double w = 0;
-	public static double s = 0;
-	public static double d = 0;
-	public static double a = 0;
+	public static boolean w = false;
+	public static boolean s = false;
+	public static boolean d = false;
+	public static boolean a = false;
 	
 	public KeyInputManager() {
 		// TODO Auto-generated constructor stub
@@ -32,43 +31,56 @@ public class KeyInputManager implements KeyListener{
 			Reference.exit();
 		}
 		
+		if(e.getKeyCode()==KeyEvent.VK_SHIFT){
+			Reference.gamePanel.player.sprinting = true;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_1){
+			if(!Reference.gamePanel.player.spellCastReady){
+				Reference.gamePanel.player.spellCastReady = true;
+			}else{
+				Reference.gamePanel.player.spellCastReady = false;
+			}
+		}
 		
 		if(e.getKeyCode()==KeyEvent.VK_W ){
-			w = Reference.playerSpeed;
+			w = true;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_S ){
-			s = Reference.playerSpeed;
+			s = true;
 			
 		}
 		if(e.getKeyCode()==KeyEvent.VK_D ){
-			d = Reference.playerSpeed;
+			d = true;
 			
 		}
 		if(e.getKeyCode()==KeyEvent.VK_A ){
-			a = Reference.playerSpeed;
+			a = true;
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode()==KeyEvent.VK_SHIFT){
+			Reference.gamePanel.player.sprinting = false;
+		}
+		
 		if(e.getKeyCode()==KeyEvent.VK_W ){
-			w = 0;
+			w = false;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_S ){
-			s = 0;
+			s = false;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_D ){
-			d = 0;
+			d = false;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_A ){
-			a = 0;
+			a = false;
 		}
 		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

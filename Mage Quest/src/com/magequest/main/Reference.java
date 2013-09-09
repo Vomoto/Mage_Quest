@@ -5,11 +5,12 @@ package com.magequest.main;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import com.magequest.entities.Player;
+import javax.imageio.ImageIO;
 
 /**
  * <b>Reference Class</b>
@@ -26,21 +27,46 @@ public class Reference {
 	public static int windowWidth = 100;
 	public static int windowHeight = 100;
 	public static int playerSpeed = 75;
+	public static int playerSprintSpeed = 200;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.02";
+	public static String version = "0.0.05";
 	public static String fps = "0";
+	public static String fullTitle = "";
 	
 	public static boolean devBuild = true;
 	
-	public static JFrame mainWindow;
+	public static Window mainWindow;
 	
-	public static JPanel gamePanel;
+	public static GamePanel gamePanel;
 	
 	public static GameLoop gl;
+	
+	public static BufferedImage explosionWhole;
+	public static Image[][] explosion = new Image[9][11];
 
 	public Reference() {
+		if(devBuild){
+			fullTitle = Reference.title + "  " + version + " - Dev Build";
+		}else{
+			fullTitle = Reference.title + "  " + version + " - Public Build";
+		}
+		addImages();
+		
 		gamePanel = new GamePanel();
+	}
+	
+	private void addImages(){
+		try {
+			explosionWhole = ImageIO.read(new File("res/explosion.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(int a = 0;a<8;a++){
+			for(int b = 0;b<10;b++){
+				explosion[a][b] = explosionWhole.getSubimage(100*b, 100*a, 100, 100);
+			}
+		}
 	}
 	
 	public static void exit(){
@@ -61,8 +87,8 @@ public class Reference {
 		sb = new StringBuilder();
 		sb.append(GameLoop.fps);
 		fps = sb.toString();
-		GamePanel.math();
-		Player.update();
+		gamePanel.math();
+		gamePanel.player.update();
 	}
 
 	/**

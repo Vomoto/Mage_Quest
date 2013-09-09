@@ -4,13 +4,14 @@
 package com.magequest.main;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
+import com.magequest.entities.Explosion;
 import com.magequest.entities.Player;
-import com.magequest.inputmanagers.KeyInputManager;
 
 /**
  * <b>Game Panel Class</b>
@@ -22,7 +23,16 @@ public class GamePanel extends JPanel{
 	
 	private static final long serialVersionUID = -9216362209081556437L;
 	
-	Component player = new Player(150,150);
+	public Player player = new Player(150,150);
+
+    List<Explosion> explosions = new ArrayList<Explosion>();
+    List<Explosion> expltbr = new ArrayList<Explosion>();
+    Explosion lastExplosion;
+    
+	
+	
+	public int ax = 0;
+	public int by = 0;
 
 	public GamePanel() {
 		super();
@@ -31,17 +41,33 @@ public class GamePanel extends JPanel{
 	public void paint(Graphics g){
 		g.setColor(Color.white);
 		g.fillRect(0, 0, Reference.windowWidth, Reference.windowHeight);
-		Player.draw(g);
+		player.draw(g);
 		g.setColor(Color.black);
-		if(!Reference.devBuild){
-			g.drawString(Reference.title + "  " + Reference.version + " - Dev Build",0,15);
-		}else{
-			g.drawString(Reference.title + "  " + Reference.version + " - Public Build",0,15);
+		for(Explosion expl : explosions){
+			expl.draw(g,expl);
 		}
+		explosions.remove(expltbr);
+		expltbr = new ArrayList<Explosion>();
+		g.drawString(Reference.fullTitle,0,15);
 		g.drawString(Reference.fps, 0, 30);
+		//g.dispose();
+		if(explosions.size()>= 500){
+			lastExplosion = explosions.get(explosions.size()-1);
+			explosions = new ArrayList<Explosion>();
+			explosions.add(lastExplosion);
+		}
+		
 	}
 	
-	public static void math(){
+	public void addExplosion(int x, int y, int size){
+		explosions.add(new Explosion(x,y,size));
+	}
+	
+	public void removeExplosion(Explosion e){
+		expltbr.add(e);
+	}
+	
+	public void math(){
 		
 	}
 

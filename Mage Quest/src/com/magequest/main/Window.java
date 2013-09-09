@@ -8,11 +8,16 @@ import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.magequest.inputmanagers.*;
+
+
 /**
  * @author Cooper Mahring
  *
  */
 public class Window extends JFrame{
+
+	private static final long serialVersionUID = 8610341084496779989L;
 
 	/**
 	 * @param title
@@ -22,14 +27,16 @@ public class Window extends JFrame{
 	 * @param y
 	 * - Height of window
 	 */
-	public Window(String title) {
-		super(title);
+	public Window() {
+		super(Reference.fullTitle);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		Reference.windowWidth = getWidth();
 		Reference.windowHeight = getHeight();
+		addKeyListener(new KeyInputManager());
+		addMouseListener(new MouseInputManager());
 	}
 	
 	/**
