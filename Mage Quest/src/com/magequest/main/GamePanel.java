@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import com.magequest.entities.Explosion;
 import com.magequest.entities.Player;
+import com.magequest.envirement.MainWorld;
 
 /**
  * <b>Game Panel Class</b>
@@ -41,6 +42,8 @@ public class GamePanel extends JPanel{
 	public void paint(Graphics g){
 		g.setColor(Color.white);
 		g.fillRect(0, 0, Reference.windowWidth, Reference.windowHeight);
+		Reference.mainWorld = new MainWorld();
+		Reference.mainWorld.draw(g);
 		player.draw(g);
 		g.setColor(Color.black);
 		for(Explosion expl : explosions){

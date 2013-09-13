@@ -115,5 +115,6 @@ public class GameLoop {
 	   
 	   private static void drawGame(float interpolation){
 		   Reference.repaint();
+		   frameCount++;
 	   }
 }

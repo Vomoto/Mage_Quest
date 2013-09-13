@@ -12,6 +12,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.magequest.envirement.MainWorld;
+
 /**
  * <b>Reference Class</b>
  * <p>Class that holds most global variables and resources.</p>
@@ -41,6 +43,8 @@ public class Reference {
 	public static GamePanel gamePanel;
 	
 	public static GameLoop gl;
+	
+	public static MainWorld mainWorld;
 	
 	public static BufferedImage explosionWhole;
 	public static Image[][] explosion = new Image[9][11];
@@ -98,6 +102,7 @@ public class Reference {
 		fps = sb.toString();
 		gamePanel.math();
 		gamePanel.player.update();
+		
 	}
 
 	/**
@@ -106,7 +111,6 @@ public class Reference {
 	 */
 	public static void repaint() {
 		gamePanel.repaint();
-		GameLoop.frameCount++;
 	}
 
 }
