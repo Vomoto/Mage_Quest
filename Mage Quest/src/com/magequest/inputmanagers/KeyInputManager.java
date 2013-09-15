@@ -35,10 +35,17 @@ public class KeyInputManager implements KeyListener{
 			Reference.gamePanel.player.sprinting = true;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_1){
-			if(!Reference.gamePanel.player.spellCastReady){
-				Reference.gamePanel.player.spellCastReady = true;
+			if(Reference.gamePanel.player.spellCast!=1){
+				Reference.gamePanel.player.spellCast = 1;
 			}else{
-				Reference.gamePanel.player.spellCastReady = false;
+				Reference.gamePanel.player.spellCast = 0;
+			}
+		}
+		if(e.getKeyCode()==KeyEvent.VK_2){
+			if(Reference.gamePanel.player.spellCast!=2){
+				Reference.gamePanel.player.spellCast = 2;
+			}else{
+				Reference.gamePanel.player.spellCast = 0;
 			}
 		}
 		

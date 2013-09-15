@@ -34,7 +34,7 @@ public class Player extends Component{
 	public  int speed = Reference.playerSpeed;
 	
 	public  boolean sprinting = false;
-	public  boolean spellCastReady = false;
+	public  int spellCast = 0;
 	
 	public  double hypoto;
 
@@ -46,8 +46,14 @@ public class Player extends Component{
 	}
 	
 	public void draw(Graphics g){
-		if(spellCastReady){
-			MagicRangeMarker.draw(g,100,MagicRangeMarker.CIRCLE);
+		if(spellCast!=0){
+			if(spellCast == 1){
+				MagicRangeMarker.draw(g,100,MagicRangeMarker.CIRCLE);
+			}else{
+				if(spellCast == 2){
+					//next spell
+				}
+			}
 		}else{
 			
 		}

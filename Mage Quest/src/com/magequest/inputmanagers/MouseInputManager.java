@@ -34,15 +34,6 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		dx = ((int)(Reference.gamePanel.player.centerX - e.getPoint().getX()))-Reference.gamePanel.offX;
-		dy = ((int)(Reference.gamePanel.player.centerY - e.getPoint().getY()))-Reference.gamePanel.offY;
-		dist = MagicRangeMarker.radius;
-		if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCastReady){
-			Reference.gamePanel.addExplosion((int) e.getPoint().getX(), (int) e.getPoint().getY(), 100);
-		}
-		startX = e.getX();
-		startY = e.getY();
-		
 	}
 
 	/* (non-Javadoc)
@@ -50,7 +41,6 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
 	}
 
 	/* (non-Javadoc)
@@ -67,6 +57,19 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
+		System.out.println(e.getModifiers());
+		if(e.getModifiers()==16||e.getModifiers()==17||e.getModifiers()==18){
+			dx = ((int)(Reference.gamePanel.player.centerX - e.getPoint().getX()))-Reference.gamePanel.offX;
+			dy = ((int)(Reference.gamePanel.player.centerY - e.getPoint().getY()))-Reference.gamePanel.offY;
+			dist = MagicRangeMarker.radius;
+			if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCast==1){
+				Reference.gamePanel.addExplosion((int) e.getPoint().getX(), (int) e.getPoint().getY(), 100);
+			}
+		}
+		startX = e.getX();
+		startY = e.getY();
+		
+		
 	}
 
 	/* (non-Javadoc)
@@ -80,13 +83,15 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	public void mouseDragged(MouseEvent e){
 		//System.out.println(e.getPoint().getX()+"  "+startX);
 		//System.out.println(e.getPoint().getY()+"  "+startY);
-		tempoffX = Reference.gamePanel.offX-(e.getX()-startX);
-		tempoffY = Reference.gamePanel.offY-(e.getY()-startY);
-		if(tempoffX>-200&&tempoffX<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowWidth-200))){
-			Reference.gamePanel.offX += -(e.getX()-startX);
-		}
-		if(tempoffY>-200&&tempoffY<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowHeight-200))){
-			Reference.gamePanel.offY += -(e.getY()-startY);
+		if(e.getModifiers()==8||e.getModifiers()==9||e.getModifiers()==10){
+			tempoffX = Reference.gamePanel.offX-(e.getX()-startX);
+			tempoffY = Reference.gamePanel.offY-(e.getY()-startY);
+			if(tempoffX>-200&&tempoffX<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowWidth-200))){
+				Reference.gamePanel.offX += -(e.getX()-startX);
+			}
+			if(tempoffY>-200&&tempoffY<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowHeight-200))){
+				Reference.gamePanel.offY += -(e.getY()-startY);
+			}
 		}
 		
 		startX = e.getX();
