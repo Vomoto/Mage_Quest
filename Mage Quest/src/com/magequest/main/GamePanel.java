@@ -30,10 +30,13 @@ public class GamePanel extends JPanel{
     List<Explosion> expltbr = new ArrayList<Explosion>();
     Explosion lastExplosion;
     
-	
+	public MainWorld mainWorld = new MainWorld();
 	
 	public int ax = 0;
 	public int by = 0;
+	
+	public int offX = 0;
+	public int offY = 0;
 
 	public GamePanel() {
 		super();
@@ -42,8 +45,7 @@ public class GamePanel extends JPanel{
 	public void paint(Graphics g){
 		g.setColor(Color.white);
 		g.fillRect(0, 0, Reference.windowWidth, Reference.windowHeight);
-		Reference.mainWorld = new MainWorld();
-		Reference.mainWorld.draw(g);
+		mainWorld.draw(g);
 		player.draw(g);
 		g.setColor(Color.black);
 		for(Explosion expl : explosions){

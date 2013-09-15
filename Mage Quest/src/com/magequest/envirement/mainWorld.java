@@ -17,8 +17,9 @@ public class MainWorld {
 	
 	public int[][] map = new int[1000][1000];
 	
-	public int offX = 0;
-	public int offY = 0;
+	public int squareSize = 32;
+	
+	
 
 	public MainWorld() {
 		
@@ -27,12 +28,11 @@ public class MainWorld {
 		}
 	
 	public void draw(Graphics g){
-		for(int x=0;x<(Reference.windowWidth/32)+15;x++){
-			for(int y = 0;y<(Reference.windowHeight/32)+15;y++){
-				g.drawImage(Reference.terrain[0][0], ((x-5)*32)+offX, ((y-15)*32)+offY, 32, 32, null);
-				//g.setColor(Color.black);
-				//g.drawRect((x-5)*32,(y-5)*32,32,32);
-				//g.drawRect((x-5)*32,(y-5)*32,32,32);
+		for(int x=0;x<1000;x++){
+			for(int y = 0;y<1000;y++){
+				if(((x*squareSize)-Reference.gamePanel.offX)>-squareSize&&((x*squareSize)-Reference.gamePanel.offX)<Reference.windowWidth&&((y*squareSize)-Reference.gamePanel.offY)>-squareSize&&((y*squareSize)-Reference.gamePanel.offY)<Reference.windowHeight){
+					g.drawImage(Reference.terrain[0][0], ((x)*squareSize)-Reference.gamePanel.offX, ((y)*squareSize)-Reference.gamePanel.offY, squareSize, squareSize, null);
+				}
 			}
 		}
 	}

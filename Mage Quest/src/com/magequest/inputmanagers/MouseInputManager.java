@@ -21,6 +21,8 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	private int dist;
 	int startX=0;
 	int startY=0;
+	int tempoffX = 0;
+	int tempoffY = 0;
 	boolean mousedown = false;
 
 	public MouseInputManager() {
@@ -32,6 +34,14 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		dx = ((int)(Reference.gamePanel.player.centerX - e.getPoint().getX()))-Reference.gamePanel.offX;
+		dy = ((int)(Reference.gamePanel.player.centerY - e.getPoint().getY()))-Reference.gamePanel.offY;
+		dist = MagicRangeMarker.radius;
+		if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCastReady){
+			Reference.gamePanel.addExplosion((int) e.getPoint().getX(), (int) e.getPoint().getY(), 100);
+		}
+		startX = e.getX();
+		startY = e.getY();
 		
 	}
 
@@ -57,15 +67,6 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		dx = (int)(Reference.gamePanel.player.centerX - e.getPoint().getX());
-		dy = (int)(Reference.gamePanel.player.centerY - e.getPoint().getY());
-		dist = MagicRangeMarker.radius;
-		if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCastReady){
-			Reference.gamePanel.addExplosion((int) e.getPoint().getX(), (int) e.getPoint().getY(), 100);
-		}
-		startX = e.getX();
-		startY = e.getY();
-		System.out.println(startX+"  "+startY+" clicked");
 	}
 
 	/* (non-Javadoc)
@@ -74,17 +75,26 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		mousedown = false;
-		System.out.println();
 	}
 	
 	public void mouseDragged(MouseEvent e){
 		//System.out.println(e.getPoint().getX()+"  "+startX);
 		//System.out.println(e.getPoint().getY()+"  "+startY);
-		Reference.mainWorld.offX += e.getX()-startX;
-		Reference.mainWorld.offY += e.getY()-startY;
-		System.out.println((e.getX()-startX)+"  "+(e.getY()-startY)+" total");
+		tempoffX = Reference.gamePanel.offX-(e.getX()-startX);
+		tempoffY = Reference.gamePanel.offY-(e.getY()-startY);
+		if(tempoffX>-200&&tempoffX<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowWidth-200))){
+			Reference.gamePanel.offX += -(e.getX()-startX);
+		}
+		if(tempoffY>-200&&tempoffY<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowHeight-200))){
+			Reference.gamePanel.offY += -(e.getY()-startY);
+		}
+		
 		startX = e.getX();
 		startY = e.getY();
-		System.out.println(startX+ "  "+startY+" dragged");
+	}
+	
+	public void mouseMoved(MouseEvent e){
+		startX = e.getX();
+		startY = e.getY();
 	}
 }

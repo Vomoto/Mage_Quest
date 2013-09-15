@@ -27,8 +27,8 @@ public class Explosion extends Component{
 	public Explosion(int locx, int locy, int sizea) {
 		super();
 		size = sizea;
-		x = locx;
-		y = locy;
+		x = locx+Reference.gamePanel.offX;
+		y = locy+Reference.gamePanel.offY;
 		setSize(size,size);
 		setLocation(x,y);
 		setVisible(true);
@@ -46,7 +46,7 @@ public class Explosion extends Component{
 				}
 			}else{
 				size = 50;
-				g.drawImage(Reference.explosion[a][b], x-(size/2), y-(size/2), size, size, null);
+				g.drawImage(Reference.explosion[a][b], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
 				b++;
 			}
 		}else{

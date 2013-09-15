@@ -24,6 +24,8 @@ public class Player extends Component{
 	
 	public double x;
 	public double y;
+	public double tempx;
+	public double tempy;
 	public double centerX;
 	public double centerY;
 	public int width = 10;
@@ -51,7 +53,7 @@ public class Player extends Component{
 		}
 		
 		g.setColor(Color.blue);
-		g.fillOval((int)Math.ceil(x/1.0),(int)Math.ceil(y/1.0), width, height);
+		g.fillOval(((int)Math.ceil(x/1.0))-Reference.gamePanel.offX,((int)Math.ceil(y/1.0))-Reference.gamePanel.offY, width, height);
 	}
 	
 	public  void update(){
@@ -61,29 +63,80 @@ public class Player extends Component{
 			speed = Reference.playerSpeed;
 		}
 		if(KeyInputManager.s && KeyInputManager.d){
-			y+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
-			x+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			tempx = x;
+			tempy = y;
+			tempy+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			tempx+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			if(tempy>0&&tempy<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offY){
+				y+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			}
+			if(tempx>0&&tempx<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offX){
+				x+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			}
 		}else if(KeyInputManager.a && KeyInputManager.w){
-			y-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
-			x-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+
+			tempx = x;
+			tempy = y;
+			tempy-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			tempx-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			if(tempy>0&&tempy<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offY){
+				y-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			}
+			if(tempx>0&&tempx<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offX){
+				x-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			}
 		}else if(KeyInputManager.w && KeyInputManager.d){
-			y-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
-			x+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+
+			tempx = x;
+			tempy = y;
+			tempy-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			tempx+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			if(tempy>0&&tempy<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offY){
+				y-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			}
+			if(tempx>0&&tempx<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offX){
+				x+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			}
 		}else if(KeyInputManager.a && KeyInputManager.s){
-			y+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
-			x-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+
+			tempx = x;
+			tempy = y;
+			tempy+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			tempx-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			if(tempy>0&&tempy<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offY){
+				y+=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			}
+			if(tempx>0&&tempx<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offX){
+				x-=(double)(speed * GameLoop.delta)/Math.sqrt(2.0);
+			}
 		}else{
 			if(KeyInputManager.s){
-				y+=speed * GameLoop.delta;
+				tempy = y;
+				tempy+=speed * GameLoop.delta;
+				if(tempy>0&&tempy<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offY){
+					y+=speed * GameLoop.delta;
+				}
 			}
 			if(KeyInputManager.w){
-				y-= speed * GameLoop.delta;
+				tempy = y;
+				tempy-=speed * GameLoop.delta;
+				if(tempy>0&&tempy<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offY){
+					y-=speed * GameLoop.delta;
+				}
 			}
 			if(KeyInputManager.d){
-				x+= speed * GameLoop.delta;
+				tempx = x;
+				tempx+=speed * GameLoop.delta;
+				if(tempx>0&&tempx<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offX){
+					x+=speed * GameLoop.delta;
+				}
 			}
 			if(KeyInputManager.a){
-			x-= speed * GameLoop.delta;
+				tempx = x;
+				tempx-=speed * GameLoop.delta;
+				if(tempx>0&&tempx<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offX){
+					x-=speed * GameLoop.delta;
+				}
 			}
 		}
 		centerX = x+(width/2);

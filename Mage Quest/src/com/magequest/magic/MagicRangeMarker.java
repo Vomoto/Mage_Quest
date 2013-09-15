@@ -32,7 +32,7 @@ public class MagicRangeMarker extends Component{
 		radius = range;
 		g.setColor(new Color(0,255,0,100));
 		if(type == CIRCLE){
-			g.fillOval((int)Reference.gamePanel.player.x-(range-(Reference.gamePanel.player.width/2)), (int)Reference.gamePanel.player.y-(range-Reference.gamePanel.player.height/2), range*2, range*2);
+			g.fillOval(((int)Reference.gamePanel.player.x-(range-(Reference.gamePanel.player.width/2)))-Reference.gamePanel.offX, ((int)Reference.gamePanel.player.y-(range-Reference.gamePanel.player.height/2))-Reference.gamePanel.offY, range*2, range*2);
 		}
 	}
 }
