@@ -12,6 +12,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.magequest.savesmanagers.*;;
+
 /**
  * <b>Reference Class</b>
  * <p>Class that holds most global variables and resources.</p>
@@ -37,10 +39,9 @@ public class Reference {
 	public static boolean devBuild = true;
 	
 	public static Window mainWindow;
-	
 	public static GamePanel gamePanel;
-	
 	public static GameLoop gl;
+	public static Save save;
 	
 	public static BufferedImage explosionWhole;
 	public static Image[][] explosion = new Image[9][11];
@@ -56,6 +57,7 @@ public class Reference {
 		addImages();
 		
 		gamePanel = new GamePanel();
+		save = new Save();
 	}
 	
 	private void addImages(){

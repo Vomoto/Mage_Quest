@@ -57,7 +57,7 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println(e.getModifiers());
+		//System.out.println(e.getModifiers());
 		if(e.getModifiers()==16||e.getModifiers()==17||e.getModifiers()==18){
 			dx = ((int)(Reference.gamePanel.player.centerX - e.getPoint().getX()))-Reference.gamePanel.offX;
 			dy = ((int)(Reference.gamePanel.player.centerY - e.getPoint().getY()))-Reference.gamePanel.offY;
