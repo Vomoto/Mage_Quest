@@ -62,7 +62,8 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 			dx = ((int)(Reference.gamePanel.player.centerX - e.getPoint().getX()))-Reference.gamePanel.offX;
 			dy = ((int)(Reference.gamePanel.player.centerY - e.getPoint().getY()))-Reference.gamePanel.offY;
 			dist = MagicRangeMarker.radius;
-			if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCast==1){
+				System.out.println(e.getX()+Reference.gamePanel.offX);
+			if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCast==1&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32 ){
 				Reference.gamePanel.addExplosion((int) e.getPoint().getX(), (int) e.getPoint().getY(), 100);
 			}
 		}

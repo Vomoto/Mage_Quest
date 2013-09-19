@@ -37,6 +37,8 @@ public class GamePanel extends JPanel{
 	
 	public int offX = 0;
 	public int offY = 0;
+	
+	public boolean following = false;
 
 	public GamePanel() {
 		super();
@@ -73,7 +75,24 @@ public class GamePanel extends JPanel{
 	}
 	
 	public void math(){
-		
+		if(following){
+			offX = (int) player.x-(Reference.windowWidth/2);
+			offY = (int)player.y-(Reference.windowHeight/2);
+			if(!(offX>-200)){
+				offX = -199;
+			}
+			if(!(offX<((mainWorld.map.length*32)-(Reference.windowWidth-200)))){
+				offX = ((mainWorld.map.length*32)-(Reference.windowWidth-201));
+			}
+			if(!(offY>-200)){
+				offY = -199;
+				
+			}
+			if(!(offY<((mainWorld.map.length*32)-(Reference.windowHeight-200)))){
+				offY = ((mainWorld.map.length*32)-(Reference.windowWidth-201));
+				
+			}
+		}
 	}
 
 }
