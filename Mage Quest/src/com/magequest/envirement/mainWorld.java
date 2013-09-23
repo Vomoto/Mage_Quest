@@ -22,8 +22,12 @@ public class MainWorld {
 	
 
 	public MainWorld() {
-		
-		
+		for(int a = 0; a<map.length;a++){
+			for(int b = 0; b<map.length;b++){
+				map[a][b] = 0;
+			}
+		}
+		Reference.save.SaveWolrd(map);
 		
 		}
 	

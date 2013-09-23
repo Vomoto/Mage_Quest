@@ -32,16 +32,16 @@ public class Reference {
 	public static int playerSprintSpeed = 200;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.08";
+	public static String version = "0.0.09";
 	public static String fps = "0";
 	public static String fullTitle = "";
 	
 	public static boolean devBuild = true;
 	
+	public static Save save;
 	public static Window mainWindow;
 	public static GamePanel gamePanel;
 	public static GameLoop gl;
-	public static Save save;
 	
 	public static BufferedImage explosionWhole;
 	public static Image[][] explosion = new Image[9][11];
@@ -56,8 +56,8 @@ public class Reference {
 		}
 		addImages();
 		
-		gamePanel = new GamePanel();
 		save = new Save();
+		gamePanel = new GamePanel();
 	}
 	
 	private void addImages(){

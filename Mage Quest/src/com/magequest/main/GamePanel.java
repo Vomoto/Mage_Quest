@@ -76,8 +76,8 @@ public class GamePanel extends JPanel{
 	
 	public void math(){
 		if(following){
-			offX = (int) player.x-(Reference.windowWidth/2);
-			offY = (int)player.y-(Reference.windowHeight/2);
+			offX = ((int) player.x)-(Reference.windowWidth/2);
+			offY = ((int)player.y)-(Reference.windowHeight/2);
 			if(!(offX>-200)){
 				offX = -199;
 			}
