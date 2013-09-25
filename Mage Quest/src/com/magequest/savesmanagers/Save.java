@@ -11,8 +11,6 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
-import com.magequest.main.Reference;
-
 /**
  *<b>Save</b>
  *<p>Saves files and stuffs</p>
@@ -27,8 +25,8 @@ public class Save {
 	
 	public Save() {
 		try {
-			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("saves/mainworld"),"utf-8"));
-		} catch (UnsupportedEncodingException | FileNotFoundException e) {
+			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("saves/mainworld.lvl")));
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
