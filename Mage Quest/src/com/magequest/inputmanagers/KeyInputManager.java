@@ -28,6 +28,7 @@ public class KeyInputManager implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+			Reference.save.SaveWolrd(Reference.gamePanel.mainWorld.map, Reference.gamePanel.mainWorld.save);
 			Reference.exit();
 		}
 		
@@ -70,6 +71,14 @@ public class KeyInputManager implements KeyListener{
 		if(e.getKeyCode()==KeyEvent.VK_2){
 			if(Reference.gamePanel.player.spellCast!=2){
 				Reference.gamePanel.player.spellCast = 2;
+			}else{
+				Reference.gamePanel.player.spellCast = 0;
+			}
+		}
+
+		if(e.getKeyCode()==KeyEvent.VK_Q){
+			if(Reference.gamePanel.player.spellCast!=10){
+				Reference.gamePanel.player.spellCast = 10;
 			}else{
 				Reference.gamePanel.player.spellCast = 0;
 			}

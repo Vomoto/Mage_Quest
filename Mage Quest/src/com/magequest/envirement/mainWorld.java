@@ -19,15 +19,13 @@ public class MainWorld {
 	
 	public int squareSize = 32;
 	
+	public String world = "mainWorld";
+	public String save = "mainWorld";
+	
 	
 
 	public MainWorld() {
-		for(int a = 0; a<map.length;a++){
-			for(int b = 0; b<map.length;b++){
-				map[a][b] = 0;
-			}
-		}
-		Reference.save.SaveWolrd(map);
+		map = Reference.load.LoadWorld("mainworld");
 		
 		}
 	
@@ -35,10 +33,16 @@ public class MainWorld {
 		for(int x=0;x<1000;x++){
 			for(int y = 0;y<1000;y++){
 				if(((x*squareSize)-Reference.gamePanel.offX)>-squareSize&&((x*squareSize)-Reference.gamePanel.offX)<Reference.windowWidth&&((y*squareSize)-Reference.gamePanel.offY)>-squareSize&&((y*squareSize)-Reference.gamePanel.offY)<Reference.windowHeight){
-					g.drawImage(Reference.terrain[0][0], ((x)*squareSize)-Reference.gamePanel.offX, ((y)*squareSize)-Reference.gamePanel.offY, squareSize, squareSize, null);
+					if((map[x][y]/100)%100==1){
+						g.drawImage(Reference.terrain[(map[x][y]/10)%10][map[x][y]%10], ((x)*squareSize)-Reference.gamePanel.offX, ((y)*squareSize)-Reference.gamePanel.offY, squareSize, squareSize, null);
+					}
 				}
 			}
 		}
+	}
+	
+	public void setBlock(int blockNum, int x, int y){
+		map[x][y] = blockNum;
 	}
 
 }

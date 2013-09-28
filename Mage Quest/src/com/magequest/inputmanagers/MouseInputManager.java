@@ -62,9 +62,14 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 			dx = ((int)(Reference.gamePanel.player.centerX - e.getPoint().getX()))-Reference.gamePanel.offX;
 			dy = ((int)(Reference.gamePanel.player.centerY - e.getPoint().getY()))-Reference.gamePanel.offY;
 			dist = MagicRangeMarker.radius;
-				System.out.println(e.getX()+Reference.gamePanel.offX);
-			if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCast==1&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32 ){
+			if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCast==10&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32 ){
 				Reference.gamePanel.addExplosion((int) e.getPoint().getX(), (int) e.getPoint().getY(), 100);
+			}
+			if(Reference.gamePanel.player.spellCast==1&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32){
+				Reference.gamePanel.mainWorld.setBlock(100,(int)(e.getPoint().getX()+Reference.gamePanel.offX)/Reference.gamePanel.mainWorld.squareSize, (int)(e.getPoint().getY()+Reference.gamePanel.offY)/Reference.gamePanel.mainWorld.squareSize);
+			}
+			if(Reference.gamePanel.player.spellCast==2&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32){
+				Reference.gamePanel.mainWorld.setBlock(110,(int)(e.getPoint().getX()+Reference.gamePanel.offX)/Reference.gamePanel.mainWorld.squareSize, (int)(e.getPoint().getY()+Reference.gamePanel.offY)/Reference.gamePanel.mainWorld.squareSize);
 			}
 		}
 		startX = e.getX();

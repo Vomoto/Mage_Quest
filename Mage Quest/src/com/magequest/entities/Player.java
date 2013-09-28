@@ -47,7 +47,7 @@ public class Player extends Component{
 	
 	public void draw(Graphics g){
 		if(spellCast!=0){
-			if(spellCast == 1){
+			if(spellCast == 10){
 				MagicRangeMarker.draw(g,100,MagicRangeMarker.CIRCLE);
 			}else{
 				if(spellCast == 2){

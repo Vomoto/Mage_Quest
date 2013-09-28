@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.magequest.main.Reference;
+
 /**
  *<b>Load</b>
  *<p>Loads files like worlds and save files</p>
@@ -27,7 +29,13 @@ public class Load {
 		try {
 			input = new BufferedInputStream(new FileInputStream("saves/"+level+".lvl"));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			Reference.save.newSave("mainWorld", level);
+			try {
+				input = new BufferedInputStream(new FileInputStream("saves/"+level+".lvl"));
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		for(int a=0;a<1000;a++){
 			for(int b=0;b<1000;b++){

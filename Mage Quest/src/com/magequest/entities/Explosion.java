@@ -42,7 +42,7 @@ public class Explosion extends Component{
 					delay = false;
 				}else{
 					a++;
-					delay = true;
+					delay = false;
 				}
 			}else{
 				size = 50;
