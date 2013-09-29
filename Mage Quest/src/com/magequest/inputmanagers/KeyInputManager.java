@@ -63,12 +63,13 @@ public class KeyInputManager implements KeyListener{
 				Reference.gamePanel.following = true;
 			}
 		}
-		if(e.getKeyCode()>48&&e.getKeyCode()<=57){
+		if(KeyEvent.VK_0<=e.getKeyCode()&&e.getKeyCode()<=KeyEvent.VK_9){
 			if(e.getKeyCode()!=lastKeyCode){
-				Reference.gamePanel.player.spellCast = e.getKeyCode()-48;
+				Reference.gamePanel.tileSelector.active = true;
+				Reference.gamePanel.tileSelector.currentTileSet = (e.getKeyCode()-48);
 				lastKeyCode = e.getKeyCode();
 			}else{
-				Reference.gamePanel.player.spellCast = 0;
+				Reference.gamePanel.tileSelector.active = false;
 				lastKeyCode = -1;
 			}
 			
@@ -87,12 +88,20 @@ public class KeyInputManager implements KeyListener{
 				Reference.gamePanel.player.spellCast = 0;
 			}
 		}*/
-		if(e.getKeyCode()==KeyEvent.VK_Q){
-			if(Reference.gamePanel.player.spellCast!=10){
-				Reference.gamePanel.player.spellCast = 10;
+		if(e.getKeyCode()==KeyEvent.VK_F){
+			if(Reference.gamePanel.player.spellCast!=1){
+				Reference.gamePanel.player.spellCast = 1;
+				lastKeyCode = e.getKeyCode();
 			}else{
 				Reference.gamePanel.player.spellCast = 0;
+				lastKeyCode = -1;
 			}
+		}
+		
+		if(e.getKeyCode()==KeyEvent.VK_Q){
+			
+		}
+		if(e.getKeyCode()==KeyEvent.VK_E){
 		}
 		
 		if(e.getKeyCode()==KeyEvent.VK_W ){

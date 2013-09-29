@@ -33,7 +33,7 @@ public class Reference {
 	public static int playerSprintSpeed = 200;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.12";
+	public static String version = "0.0.13";
 	public static String fps = "0";
 	public static String fullTitle = "";
 	
@@ -48,7 +48,7 @@ public class Reference {
 	public static BufferedImage explosionWhole;
 	public static Image[][] explosion = new Image[9][11];
 	public static BufferedImage terrainWhole;
-	public static Image[][] terrain = new Image[10][10];
+	public static BufferedImage[][] terrain = new BufferedImage[10][10];
 	
 	public static Random randomGenerator = new Random();
 
@@ -94,7 +94,7 @@ public class Reference {
 	 * <b>Update</b>
 	 * <p>Updates any necessary math</p>
 	 */
-	public static void update() {
+	public static void update(float interpolation) {
 		try{
 			windowWidth = mainWindow.getWidth();
 			windowHeight = mainWindow.getHeight();
@@ -103,8 +103,7 @@ public class Reference {
 		sb = new StringBuilder();
 		sb.append(GameLoop.fps);
 		fps = sb.toString();
-		gamePanel.math();
-		gamePanel.player.update();
+		gamePanel.update(interpolation);
 		
 	}
 

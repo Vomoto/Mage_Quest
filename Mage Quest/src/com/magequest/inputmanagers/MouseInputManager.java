@@ -59,14 +59,22 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	public void mousePressed(MouseEvent e) {
 		//System.out.println(e.getModifiers());
 		if(e.getModifiers()==16||e.getModifiers()==17||e.getModifiers()==18){
-			dx = ((int)(Reference.gamePanel.player.centerX - e.getPoint().getX()))-Reference.gamePanel.offX;
-			dy = ((int)(Reference.gamePanel.player.centerY - e.getPoint().getY()))-Reference.gamePanel.offY;
-			dist = MagicRangeMarker.radius;
-			if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCast==10&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32 ){
-				Reference.gamePanel.addExplosion((int) e.getPoint().getX(), (int) e.getPoint().getY(), 50);
-			}
-			if(Reference.gamePanel.player.spellCast>0&&Reference.gamePanel.player.spellCast<=9&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32){
-				Reference.gamePanel.mainWorld.setBlock(100+((Reference.gamePanel.player.spellCast-1)*10),(int)(e.getPoint().getX()+Reference.gamePanel.offX)/Reference.gamePanel.mainWorld.squareSize, (int)(e.getPoint().getY()+Reference.gamePanel.offY)/Reference.gamePanel.mainWorld.squareSize);
+			if(Reference.gamePanel.tileSelector.active&&Reference.gamePanel.tileSelector.currentX<e.getX()&&Reference.gamePanel.tileSelector.currentX+Reference.gamePanel.tileSelector.width>e.getX()&&Reference.gamePanel.tileSelector.currentY<e.getY()&&Reference.gamePanel.tileSelector.currentY+Reference.gamePanel.tileSelector.height>e.getY()){
+				for(int i = 0; i<10; i++){
+					if(e.getX()>(int)(((i+1)*(Reference.gamePanel.tileSelector.width/11.5))+Reference.gamePanel.tileSelector.currentX)&&e.getX()<(int)(((i+1)*(Reference.gamePanel.tileSelector.width/11.5))+Reference.gamePanel.tileSelector.currentX)+Reference.gamePanel.tileSelector.tileSize&&e.getY()>(int)(Reference.gamePanel.tileSelector.currentY+( Reference.windowHeight/32))&&e.getY()<(int)(Reference.gamePanel.tileSelector.currentY+( Reference.windowHeight/32))+Reference.gamePanel.tileSelector.tileSize){
+						Reference.gamePanel.player.spellCast = (Reference.gamePanel.tileSelector.currentTileSet*10)+i;
+					}
+				}
+			}else{
+				dx = ((int)(Reference.gamePanel.player.centerX - e.getPoint().getX()))-Reference.gamePanel.offX;
+				dy = ((int)(Reference.gamePanel.player.centerY - e.getPoint().getY()))-Reference.gamePanel.offY;
+				dist = MagicRangeMarker.radius;
+				if((dx*dx)+(dy*dy)<=dist*dist&&Reference.gamePanel.player.spellCast==1&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32 ){
+					Reference.gamePanel.addExplosion((int) e.getPoint().getX(), (int) e.getPoint().getY(), 50);
+				}
+				if(Reference.gamePanel.player.spellCast>9&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32){
+					Reference.gamePanel.mainWorld.setBlock(100+((Reference.gamePanel.player.spellCast-10)),(int)(e.getPoint().getX()+Reference.gamePanel.offX)/Reference.gamePanel.mainWorld.squareSize, (int)(e.getPoint().getY()+Reference.gamePanel.offY)/Reference.gamePanel.mainWorld.squareSize);
+				}
 			}
 		}
 		startX = e.getX();
@@ -86,19 +94,21 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	public void mouseDragged(MouseEvent e){
 		//System.out.println(e.getPoint().getX()+"  "+startX);
 		//System.out.println(e.getPoint().getY()+"  "+startY);
-		if(e.getModifiers()==8||e.getModifiers()==9||e.getModifiers()==10){
-			tempoffX = Reference.gamePanel.offX-(e.getX()-startX);
-			tempoffY = Reference.gamePanel.offY-(e.getY()-startY);
-			if(tempoffX>-200&&tempoffX<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowWidth-200))){
-				Reference.gamePanel.offX += -(e.getX()-startX);
+		if(!(Reference.gamePanel.tileSelector.active&&Reference.gamePanel.tileSelector.currentX<e.getX()&&Reference.gamePanel.tileSelector.currentX+Reference.gamePanel.tileSelector.width>e.getX()&&Reference.gamePanel.tileSelector.currentY<e.getY()&&Reference.gamePanel.tileSelector.currentY+Reference.gamePanel.tileSelector.height>e.getY())){
+			if(e.getModifiers()==8||e.getModifiers()==9||e.getModifiers()==10){
+				tempoffX = Reference.gamePanel.offX-(e.getX()-startX);
+				tempoffY = Reference.gamePanel.offY-(e.getY()-startY);
+				if(tempoffX>-200&&tempoffX<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowWidth-200))){
+					Reference.gamePanel.offX += -(e.getX()-startX);
+				}
+				if(tempoffY>-200&&tempoffY<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowHeight-200))){
+					Reference.gamePanel.offY += -(e.getY()-startY);
+				}
 			}
-			if(tempoffY>-200&&tempoffY<((Reference.gamePanel.mainWorld.map.length*32)-(Reference.windowHeight-200))){
-				Reference.gamePanel.offY += -(e.getY()-startY);
-			}
-		}
-		if(e.getModifiers()==16||e.getModifiers()==17||e.getModifiers()==18){
-			if(Reference.gamePanel.player.spellCast>0&&Reference.gamePanel.player.spellCast<=9&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32){
-				Reference.gamePanel.mainWorld.setBlock(100+((Reference.gamePanel.player.spellCast-1)*10),(int)(e.getPoint().getX()+Reference.gamePanel.offX)/Reference.gamePanel.mainWorld.squareSize, (int)(e.getPoint().getY()+Reference.gamePanel.offY)/Reference.gamePanel.mainWorld.squareSize);
+			if(e.getModifiers()==16||e.getModifiers()==17||e.getModifiers()==18){
+				if(Reference.gamePanel.player.spellCast>9&&Reference.gamePanel.offX+e.getX()>0&&Reference.gamePanel.offY+e.getY()>0&&Reference.gamePanel.offX+e.getX()<Reference.gamePanel.mainWorld.map.length*32&&Reference.gamePanel.offY+e.getY()<Reference.gamePanel.mainWorld.map.length*32){
+					Reference.gamePanel.mainWorld.setBlock(100+((Reference.gamePanel.player.spellCast-10)),(int)(e.getPoint().getX()+Reference.gamePanel.offX)/Reference.gamePanel.mainWorld.squareSize, (int)(e.getPoint().getY()+Reference.gamePanel.offY)/Reference.gamePanel.mainWorld.squareSize);
+				}
 			}
 		}
 		startX = e.getX();

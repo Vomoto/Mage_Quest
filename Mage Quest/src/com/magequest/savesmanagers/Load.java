@@ -25,7 +25,7 @@ public class Load {
 	public Load() {
 	}
 	
-	public int[][] LoadWorld(String level){
+	public int[][] LoadSave(String level){
 		try {
 			input = new BufferedInputStream(new FileInputStream("saves/"+level+".lvl"));
 		} catch (FileNotFoundException e) {

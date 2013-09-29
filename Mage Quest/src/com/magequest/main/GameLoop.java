@@ -80,7 +80,7 @@ public class GameLoop {
 	         
 	            //Render. To do so, we need to calculate interpolation for a smooth render.
 	            float interpolation = Math.min(1.0f, (float) ((now - lastUpdateTime) / TIME_BETWEEN_UPDATES) );
-	            updateGame();
+	            updateGame(interpolation);
 	            drawGame(interpolation);
 	            lastRenderTime = now;
 	         
@@ -109,8 +109,8 @@ public class GameLoop {
 	      }
 	   }
 	   
-	   private void updateGame(){
-		   Reference.update();
+	   private void updateGame(float interpolation){
+		   Reference.update(interpolation);
 	   }
 	   
 	   private static void drawGame(float interpolation){

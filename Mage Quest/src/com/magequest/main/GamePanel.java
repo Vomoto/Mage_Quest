@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import com.magequest.entities.Explosion;
 import com.magequest.entities.Player;
 import com.magequest.envirement.MainWorld;
+import com.magequest.gui.TileSelector;
 
 /**
  * <b>Game Panel Class</b>
@@ -25,6 +26,7 @@ public class GamePanel extends JPanel{
 	private static final long serialVersionUID = -9216362209081556437L;
 	
 	public Player player = new Player(150,150);
+	public TileSelector tileSelector = new TileSelector();
 
     List<Explosion> explosions = new ArrayList<Explosion>();
     List<Explosion> expltbr = new ArrayList<Explosion>();
@@ -65,6 +67,7 @@ public class GamePanel extends JPanel{
 			explosions = new ArrayList<Explosion>();
 			explosions.add(lastExplosion);
 		}
+		tileSelector.draw(g);
 	}
 	
 	public void addExplosion(int x, int y, int size){
@@ -75,7 +78,7 @@ public class GamePanel extends JPanel{
 		expltbr.add(e);
 	}
 	
-	public void math(){
+	public void update(float interpolation){
 		if(following){
 			offX = ((int) player.x)-(Reference.windowWidth/2);
 			offY = ((int)player.y)-(Reference.windowHeight/2);
@@ -94,6 +97,8 @@ public class GamePanel extends JPanel{
 				
 			}
 		}
+		player.update();
+		tileSelector.update(interpolation);
 	}
 
 }

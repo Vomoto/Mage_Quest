@@ -47,12 +47,16 @@ public class Player extends Component{
 	
 	public void draw(Graphics g){
 		if(spellCast!=0){
-			if(spellCast == 10){
+			if(spellCast == 1){
 				MagicRangeMarker.draw(g,100,MagicRangeMarker.CIRCLE);
-			}else if(spellCast < 9){
-				g.drawImage(Reference.terrain[spellCast-1][0],(int) Reference.mainWindow.getMousePosition().getX()-17,(int)Reference.mainWindow.getMousePosition().getY()-17,32,32 , null);
-				g.setColor(Color.black);
-				g.drawRect((int) Reference.mainWindow.getMousePosition().getX()-18, (int)Reference.mainWindow.getMousePosition().getY()-18, 33, 33);
+			}else if(spellCast > 9){
+				try{
+					g.drawImage(Reference.terrain[((spellCast-10)/10)%10][spellCast%10],(int) Reference.mainWindow.getMousePosition().getX()-17,(int)Reference.mainWindow.getMousePosition().getY()-17,32,32 , null);
+					g.setColor(Color.black);
+					g.drawRect((int) Reference.mainWindow.getMousePosition().getX()-18, (int)Reference.mainWindow.getMousePosition().getY()-18, 33, 33);
+				}catch(Exception e){
+					System.out.println("Mouse went off screen");
+				}
 				
 			}
 		}else{
