@@ -42,7 +42,12 @@ public class MainWorld {
 	}
 	
 	public void setBlock(int blockNum, int x, int y){
-		map[x][y] = blockNum;
+		if(blockNum == 100||blockNum == 110){
+			map[x][y] = blockNum+Reference.randomGenerator.nextInt(3);
+		}else{
+			map[x][y] = blockNum;
+			
+		}
 	}
 
 }

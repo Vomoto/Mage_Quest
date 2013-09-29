@@ -49,7 +49,7 @@ public class GameLoop {
 	      double lastRenderTime = System.nanoTime();
 	      
 	      //If we are able to get as high as this FPS, don't render again.
-	      final double TARGET_FPS = 6000;
+	      final double TARGET_FPS = 60;
 	      final double TARGET_TIME_BETWEEN_RENDERS = 1000000000 / TARGET_FPS;
 	      
 	      //Simple way of finding FPS.
@@ -70,7 +70,6 @@ public class GameLoop {
 	               lastUpdateTime += TIME_BETWEEN_UPDATES;
 	            } 
 	               updateCount++;
-	               updateGame();
 	   
 	            //If for some reason an update takes forever, we don't want to do an insane number of catchups.
 	            //If you were doing some sort of game that needed to keep EXACT time, you would get rid of this.
@@ -81,6 +80,7 @@ public class GameLoop {
 	         
 	            //Render. To do so, we need to calculate interpolation for a smooth render.
 	            float interpolation = Math.min(1.0f, (float) ((now - lastUpdateTime) / TIME_BETWEEN_UPDATES) );
+	            updateGame();
 	            drawGame(interpolation);
 	            lastRenderTime = now;
 	         

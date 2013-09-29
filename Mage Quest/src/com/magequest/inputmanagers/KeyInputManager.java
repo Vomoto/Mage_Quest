@@ -21,6 +21,8 @@ public class KeyInputManager implements KeyListener{
 	public static boolean d = false;
 	public static boolean a = false;
 	
+	int lastKeyCode = -1;
+	
 	public KeyInputManager() {
 		// TODO Auto-generated constructor stub
 	}
@@ -61,6 +63,16 @@ public class KeyInputManager implements KeyListener{
 				Reference.gamePanel.following = true;
 			}
 		}
+		if(e.getKeyCode()>48&&e.getKeyCode()<=57){
+			if(e.getKeyCode()!=lastKeyCode){
+				Reference.gamePanel.player.spellCast = e.getKeyCode()-48;
+				lastKeyCode = e.getKeyCode();
+			}else{
+				Reference.gamePanel.player.spellCast = 0;
+				lastKeyCode = -1;
+			}
+			
+		}/*
 		if(e.getKeyCode()==KeyEvent.VK_1){
 			if(Reference.gamePanel.player.spellCast!=1){
 				Reference.gamePanel.player.spellCast = 1;
@@ -74,8 +86,7 @@ public class KeyInputManager implements KeyListener{
 			}else{
 				Reference.gamePanel.player.spellCast = 0;
 			}
-		}
-
+		}*/
 		if(e.getKeyCode()==KeyEvent.VK_Q){
 			if(Reference.gamePanel.player.spellCast!=10){
 				Reference.gamePanel.player.spellCast = 10;

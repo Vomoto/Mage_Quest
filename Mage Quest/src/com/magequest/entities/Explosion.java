@@ -18,7 +18,7 @@ public class Explosion extends Component{
 	private int a = 0;
 	private int b = 0;
 	
-	private  int size = 0;
+	private  int size = 5;
 	private  int x = 0;
 	private  int y = 0;
 	
@@ -35,17 +35,11 @@ public class Explosion extends Component{
 	}
 	
 	public void draw(Graphics g,Explosion expl){
-		if(a<=7){
-			if(b>=9){
+		if(a<3){
+			if(b>=10){
+				a++;
 				b=0;
-				if(delay){
-					delay = false;
-				}else{
-					a++;
-					delay = false;
-				}
 			}else{
-				size = 50;
 				g.drawImage(Reference.explosion[a][b], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
 				b++;
 			}

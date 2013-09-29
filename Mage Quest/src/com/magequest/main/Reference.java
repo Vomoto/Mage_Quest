@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -32,7 +33,7 @@ public class Reference {
 	public static int playerSprintSpeed = 200;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.11";
+	public static String version = "0.0.12";
 	public static String fps = "0";
 	public static String fullTitle = "";
 	
@@ -48,6 +49,8 @@ public class Reference {
 	public static Image[][] explosion = new Image[9][11];
 	public static BufferedImage terrainWhole;
 	public static Image[][] terrain = new Image[10][10];
+	
+	public static Random randomGenerator = new Random();
 
 	public Reference() {
 		if(devBuild){
@@ -64,13 +67,13 @@ public class Reference {
 	
 	private void addImages(){
 		try {
-			explosionWhole = ImageIO.read(new File("res/explosion.png"));
+			explosionWhole = ImageIO.read(new File("res/explosion2.png"));
 			terrainWhole = ImageIO.read(new File("res/terrain1.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for(int a = 0;a<8;a++){
+		for(int a = 0;a<3;a++){
 			for(int b = 0;b<10;b++){
 				explosion[a][b] = explosionWhole.getSubimage(100*b, 100*a, 100, 100);
 			}

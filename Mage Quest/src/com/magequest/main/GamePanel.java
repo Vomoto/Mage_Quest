@@ -35,6 +35,8 @@ public class GamePanel extends JPanel{
 	public int ax = 0;
 	public int by = 0;
 	
+	int z = 0;
+	
 	public int offX = 0;
 	public int offY = 0;
 	
@@ -63,7 +65,6 @@ public class GamePanel extends JPanel{
 			explosions = new ArrayList<Explosion>();
 			explosions.add(lastExplosion);
 		}
-		
 	}
 	
 	public void addExplosion(int x, int y, int size){
