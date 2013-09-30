@@ -59,10 +59,10 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	public void mousePressed(MouseEvent e) {
 		//System.out.println(e.getModifiers());
 		if(e.getModifiers()==16||e.getModifiers()==17||e.getModifiers()==18){
-			if(Reference.gamePanel.tileSelector.active&&Reference.gamePanel.tileSelector.currentX<e.getX()&&Reference.gamePanel.tileSelector.currentX+Reference.gamePanel.tileSelector.width>e.getX()&&Reference.gamePanel.tileSelector.currentY<e.getY()&&Reference.gamePanel.tileSelector.currentY+Reference.gamePanel.tileSelector.height>e.getY()){
+			if(Reference.gamePanel.spellSelector.active&&Reference.gamePanel.spellSelector.currentX<e.getX()&&Reference.gamePanel.spellSelector.currentX+Reference.gamePanel.spellSelector.width>e.getX()&&Reference.gamePanel.spellSelector.currentY<e.getY()&&Reference.gamePanel.spellSelector.currentY+Reference.gamePanel.spellSelector.height>e.getY()){
 				for(int i = 0; i<10; i++){
-					if(e.getX()>(int)(((i+1)*(Reference.gamePanel.tileSelector.width/11.5))+Reference.gamePanel.tileSelector.currentX)&&e.getX()<(int)(((i+1)*(Reference.gamePanel.tileSelector.width/11.5))+Reference.gamePanel.tileSelector.currentX)+Reference.gamePanel.tileSelector.tileSize&&e.getY()>(int)(Reference.gamePanel.tileSelector.currentY+( Reference.windowHeight/32))&&e.getY()<(int)(Reference.gamePanel.tileSelector.currentY+( Reference.windowHeight/32))+Reference.gamePanel.tileSelector.tileSize){
-						Reference.gamePanel.player.spellCast = (Reference.gamePanel.tileSelector.currentTileSet*10)+i;
+					if(e.getX()>(int)(((i+1)*(Reference.gamePanel.spellSelector.width/11.5))+Reference.gamePanel.spellSelector.currentX)&&e.getX()<(int)(((i+1)*(Reference.gamePanel.spellSelector.width/11.5))+Reference.gamePanel.spellSelector.currentX)+Reference.gamePanel.spellSelector.tileSize&&e.getY()>(int)(Reference.gamePanel.spellSelector.currentY+( Reference.windowHeight/32))&&e.getY()<(int)(Reference.gamePanel.spellSelector.currentY+( Reference.windowHeight/32))+Reference.gamePanel.spellSelector.tileSize){
+						Reference.gamePanel.player.spellCast = (i+1)*10;
 					}
 				}
 			}else{
@@ -94,7 +94,7 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	public void mouseDragged(MouseEvent e){
 		//System.out.println(e.getPoint().getX()+"  "+startX);
 		//System.out.println(e.getPoint().getY()+"  "+startY);
-		if(!(Reference.gamePanel.tileSelector.active&&Reference.gamePanel.tileSelector.currentX<e.getX()&&Reference.gamePanel.tileSelector.currentX+Reference.gamePanel.tileSelector.width>e.getX()&&Reference.gamePanel.tileSelector.currentY<e.getY()&&Reference.gamePanel.tileSelector.currentY+Reference.gamePanel.tileSelector.height>e.getY())){
+		if(!(Reference.gamePanel.spellSelector.active&&Reference.gamePanel.spellSelector.currentX<e.getX()&&Reference.gamePanel.spellSelector.currentX+Reference.gamePanel.spellSelector.width>e.getX()&&Reference.gamePanel.spellSelector.currentY<e.getY()&&Reference.gamePanel.spellSelector.currentY+Reference.gamePanel.spellSelector.height>e.getY())){
 			if(e.getModifiers()==8||e.getModifiers()==9||e.getModifiers()==10){
 				tempoffX = Reference.gamePanel.offX-(e.getX()-startX);
 				tempoffY = Reference.gamePanel.offY-(e.getY()-startY);

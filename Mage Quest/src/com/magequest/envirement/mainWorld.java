@@ -24,12 +24,6 @@ public class MainWorld {
 	public String world = "mainWorld";
 	public String save = "mainWorld";
 	
-	AffineTransform tx;
-	AffineTransformOp op;
-	double rotation;
-	double rotationX;
-	double rotationY;
-	
 
 	public MainWorld() {
 		map = Reference.load.LoadSave(save);
@@ -42,22 +36,6 @@ public class MainWorld {
 				if(((x*squareSize)-Reference.gamePanel.offX)>-squareSize&&((x*squareSize)-Reference.gamePanel.offX)<Reference.windowWidth&&((y*squareSize)-Reference.gamePanel.offY)>-squareSize&&((y*squareSize)-Reference.gamePanel.offY)<Reference.windowHeight){
 					if((map[x][y]/100)%10==1){
 						g.drawImage(Reference.terrain[(map[x][y]/10)%10][map[x][y]%10], ((x)*squareSize)-Reference.gamePanel.offX, ((y)*squareSize)-Reference.gamePanel.offY, squareSize, squareSize, null);
-					}else if((map[x][y]/100)%10<=4){
-						System.out.println(map[x][y]+"  "+x+"  "+y);
-						rotation = Math.toRadians((((map[x][y]/100)%10)-1)*90);
-						if((map[x][y]/100)%10==2){
-							
-						}
-						if((map[x][y]/100)%10==3){
-							
-						}
-						if((map[x][y]/100)%10==4){
-							
-						}
-						tx = AffineTransform.getRotateInstance(Math.toRadians(rotation));
-						op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BICUBIC);
-						g.drawImage(op.filter(Reference.terrain[(map[x][y]/10)%10][map[x][y]%10],null), ((x)*squareSize)-Reference.gamePanel.offX, ((y)*squareSize)-Reference.gamePanel.offY, squareSize, squareSize, null);
-						
 					}
 				}
 			}
@@ -65,7 +43,16 @@ public class MainWorld {
 	}
 	
 	public void setBlock(int blockNum, int x, int y){
-		map[x][y] = blockNum;
+		if(blockNum == 100){
+			map[x][y] = blockNum+Reference.randomGenerator.nextInt(3);
+		}else if(blockNum == 110){
+			map[x][y] = blockNum+Reference.randomGenerator.nextInt(3);
+		}else if(blockNum == 130){
+			map[x][y] = blockNum+Reference.randomGenerator.nextInt(3);
+			
+		}else{
+			map[x][y] = blockNum;
+		}
 	}
 
 }

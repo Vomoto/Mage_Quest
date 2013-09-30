@@ -63,45 +63,31 @@ public class KeyInputManager implements KeyListener{
 				Reference.gamePanel.following = true;
 			}
 		}
-		if(KeyEvent.VK_0<=e.getKeyCode()&&e.getKeyCode()<=KeyEvent.VK_9){
+		if(KeyEvent.VK_1==e.getKeyCode()){
 			if(e.getKeyCode()!=lastKeyCode){
-				Reference.gamePanel.tileSelector.active = true;
-				Reference.gamePanel.tileSelector.currentTileSet = (e.getKeyCode()-48);
+				Reference.gamePanel.spellSelector.active = true;
+				Reference.gamePanel.spellSelector.spellSet = Reference.gamePanel.spellSelector.TERRAFORM;
 				lastKeyCode = e.getKeyCode();
 			}else{
-				Reference.gamePanel.tileSelector.active = false;
+				Reference.gamePanel.spellSelector.active = false;
+				Reference.gamePanel.player.spellCast = 0;
+				lastKeyCode = -1;
+			}
+		if(e.getKeyCode()==KeyEvent.VK_2){
+			if(e.getKeyCode()!=lastKeyCode){
+				Reference.gamePanel.player.spellCast = 1;
+				lastKeyCode = e.getKeyCode();
+			}else{
 				Reference.gamePanel.player.spellCast = 0;
 				lastKeyCode = -1;
 			}
 			
-		}/*
-		if(e.getKeyCode()==KeyEvent.VK_1){
-			if(Reference.gamePanel.player.spellCast!=1){
-				Reference.gamePanel.player.spellCast = 1;
-			}else{
-				Reference.gamePanel.player.spellCast = 0;
-			}
 		}
-		if(e.getKeyCode()==KeyEvent.VK_2){
-			if(Reference.gamePanel.player.spellCast!=2){
-				Reference.gamePanel.player.spellCast = 2;
-			}else{
-				Reference.gamePanel.player.spellCast = 0;
-			}
-		}*/
+			
+		}
 		if(e.getKeyCode()==KeyEvent.VK_F){
 		}
 		
-		if(e.getKeyCode()==KeyEvent.VK_Q){
-			if(e.getKeyCode()!=lastKeyCode){
-				Reference.gamePanel.player.spellCast = 1;
-				lastKeyCode = e.getKeyCode();
-			}else{
-				Reference.gamePanel.player.spellCast = 0;
-				lastKeyCode = -1;
-			}
-			
-		}
 		if(e.getKeyCode()==KeyEvent.VK_E){
 		}
 		

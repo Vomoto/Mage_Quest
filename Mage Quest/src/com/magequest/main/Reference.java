@@ -33,7 +33,7 @@ public class Reference {
 	public static int playerSprintSpeed = 200;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.14";
+	public static String version = "0.0.15";
 	public static String fps = "0";
 	public static String fullTitle = "";
 	
@@ -49,6 +49,8 @@ public class Reference {
 	public static Image[][] explosion = new Image[9][11];
 	public static BufferedImage terrainWhole;
 	public static BufferedImage[][] terrain = new BufferedImage[10][10];
+	public static BufferedImage terrainModeratesWhole;
+	public static BufferedImage[][] terrainModerates = new BufferedImage[10][10];
 	
 	public static Random randomGenerator = new Random();
 
@@ -68,7 +70,8 @@ public class Reference {
 	private void addImages(){
 		try {
 			explosionWhole = ImageIO.read(new File("res/explosion2.png"));
-			terrainWhole = ImageIO.read(new File("res/terrain1.png"));
+			terrainWhole = ImageIO.read(new File("res/Terrain.png"));
+			terrainModeratesWhole = ImageIO.read(new File("res/TerrainModerates.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -78,9 +81,22 @@ public class Reference {
 				explosion[a][b] = explosionWhole.getSubimage(100*b, 100*a, 100, 100);
 			}
 		}
-		for(int a = 0;a<10;a++){
-			for(int b = 0;b<10;b++){
-				terrain[a][b] = terrainWhole.getSubimage(16*b, 16*a, 16, 16);
+		for(int a = 0;a<=10;a++){
+			for(int b = 0;b<=10;b++){
+				try{
+					terrain[a][b] = terrainWhole.getSubimage(16*b, 16*a, 16, 16);
+				}catch(Exception e){
+					
+				}
+			}
+		}
+		for(int a = 0;a<=10;a++){
+			for(int b = 0;b<=10;b++){
+				try{
+					terrainModerates[a][b] = terrainModeratesWhole.getSubimage(16*b, 16*a, 16, 16);
+				}catch(Exception e){
+					
+				}
 			}
 		}
 	}

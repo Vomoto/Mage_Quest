@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
+import com.magequest.main.Reference;
+
 /**
  *<b>Save</b>
  *<p>Saves files and stuffs</p>
@@ -63,7 +65,7 @@ public class Save {
 		for(int a = 0; a < 1000;a++){
 			for(int b = 0; b < 1000;b++){
 				try {
-					writer.write(100+" ");
+					writer.write((100+Reference.randomGenerator.nextInt(3))+" ");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

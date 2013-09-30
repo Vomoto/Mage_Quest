@@ -55,7 +55,6 @@ public class Player extends Component{
 					g.setColor(Color.black);
 					g.drawRect((int) Reference.mainWindow.getMousePosition().getX()-18, (int)Reference.mainWindow.getMousePosition().getY()-18, 33, 33);
 				}catch(Exception e){
-					System.out.println("Mouse went off screen");
 				}
 				
 			}
