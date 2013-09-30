@@ -70,6 +70,7 @@ public class KeyInputManager implements KeyListener{
 				lastKeyCode = e.getKeyCode();
 			}else{
 				Reference.gamePanel.tileSelector.active = false;
+				Reference.gamePanel.player.spellCast = 0;
 				lastKeyCode = -1;
 			}
 			
@@ -89,16 +90,16 @@ public class KeyInputManager implements KeyListener{
 			}
 		}*/
 		if(e.getKeyCode()==KeyEvent.VK_F){
-			if(Reference.gamePanel.player.spellCast!=1){
+		}
+		
+		if(e.getKeyCode()==KeyEvent.VK_Q){
+			if(e.getKeyCode()!=lastKeyCode){
 				Reference.gamePanel.player.spellCast = 1;
 				lastKeyCode = e.getKeyCode();
 			}else{
 				Reference.gamePanel.player.spellCast = 0;
 				lastKeyCode = -1;
 			}
-		}
-		
-		if(e.getKeyCode()==KeyEvent.VK_Q){
 			
 		}
 		if(e.getKeyCode()==KeyEvent.VK_E){

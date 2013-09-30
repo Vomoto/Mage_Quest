@@ -4,7 +4,6 @@
 package com.magequest.envirement;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 
@@ -44,6 +43,7 @@ public class MainWorld {
 					if((map[x][y]/100)%10==1){
 						g.drawImage(Reference.terrain[(map[x][y]/10)%10][map[x][y]%10], ((x)*squareSize)-Reference.gamePanel.offX, ((y)*squareSize)-Reference.gamePanel.offY, squareSize, squareSize, null);
 					}else if((map[x][y]/100)%10<=4){
+						System.out.println(map[x][y]+"  "+x+"  "+y);
 						rotation = Math.toRadians((((map[x][y]/100)%10)-1)*90);
 						if((map[x][y]/100)%10==2){
 							

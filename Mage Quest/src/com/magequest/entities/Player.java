@@ -59,8 +59,6 @@ public class Player extends Component{
 				}
 				
 			}
-		}else{
-			
 		}
 		
 		g.setColor(Color.blue);

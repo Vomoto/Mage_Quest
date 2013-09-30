@@ -36,11 +36,17 @@ public class Save {
 			for(int a = 0; a < map.length;a++){
 				for(int b = 0; b<map.length;b++){
 					try {
-						writer.write(map[a][b]);
+						writer.write(map[a][b]+" ");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}
+				try {
+					writer.write("\n");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				
 		}
@@ -57,11 +63,17 @@ public class Save {
 		for(int a = 0; a < 1000;a++){
 			for(int b = 0; b < 1000;b++){
 				try {
-					writer.write(100);
+					writer.write(100+" ");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}
+			try {
+				writer.write("\n");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 		}

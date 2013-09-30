@@ -68,7 +68,6 @@ public class TileSelector extends Component{
 			if(!hasBeenActivated){
 				currentY = targetY;
 			}
-			Reference.gamePanel.player.spellCast = 0;
 		}
 		if(targetY!=currentY){
 			if(targetY>currentY){
