@@ -77,17 +77,17 @@ public class MainWorld {
 			if(map[x-1][y-1]>=100&&map[x-1][y-1]<=103){
 				map[x-1][y-1] = 208;
 			}
-			if(map[x][y+1]==218||map[x][y+1]==219){
+			if(map[x][y+1]==218||map[x][y+1]==219||map[x][y+1]==209||map[x][y+1]==208||(map[x][y+1]>=200&&map[x][y+1]<=204)){
 				map[x][y+1] = 204+Reference.randomGenerator.nextInt(2);
 			}
-			if(map[x][y-1]==209||map[x][y-1]==208){
+			if(map[x][y-1]==209||map[x][y-1]==208||map[x][y-1]==218||map[x][y-1]==218||(map[x][y-1]>=200&&map[x][y-1]<=204)){
 				map[x][y-1] = 206+Reference.randomGenerator.nextInt(2);
 			}
-			if(map[x+1][y]==218||map[x+1][y]==219){
-				map[x+1][y] = 204+Reference.randomGenerator.nextInt(2);
+			if(map[x+1][y]==218||map[x+1][y]==219||map[x+1][y]==209||map[x+1][y]==209||(map[x+1][y]>=205&&map[x+1][y]<=208)){
+				map[x+1][y] = 202+Reference.randomGenerator.nextInt(2);
 			}
-			if(map[x-1][y]==209||map[x-1][y]==208){
-				map[x-1][y] = 206+Reference.randomGenerator.nextInt(2);
+			if(map[x-1][y]==209||map[x-1][y]==208||map[x-1][y]==218||map[x-1][y]==218||(map[x-1][y]>=205&&map[x-1][y]<=208)){
+				map[x-1][y] = 200+Reference.randomGenerator.nextInt(2);
 			}
 				//map[x][y] = blockNum+Reference.randomGenerator.nextInt(3);
 			map[x][y] = blockNum+Reference.randomGenerator.nextInt(3);
