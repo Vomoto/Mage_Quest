@@ -60,9 +60,18 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 		//System.out.println(e.getModifiers());
 		if(e.getModifiers()==16||e.getModifiers()==17||e.getModifiers()==18){
 			if(Reference.gamePanel.spellSelector.active&&Reference.gamePanel.spellSelector.currentX<e.getX()&&Reference.gamePanel.spellSelector.currentX+Reference.gamePanel.spellSelector.width>e.getX()&&Reference.gamePanel.spellSelector.currentY<e.getY()&&Reference.gamePanel.spellSelector.currentY+Reference.gamePanel.spellSelector.height>e.getY()){
-				for(int i = 0; i<10; i++){
+				for(int i = 0; i<=10; i++){
 					if(e.getX()>(int)(((i+1)*(Reference.gamePanel.spellSelector.width/11.5))+Reference.gamePanel.spellSelector.currentX)&&e.getX()<(int)(((i+1)*(Reference.gamePanel.spellSelector.width/11.5))+Reference.gamePanel.spellSelector.currentX)+Reference.gamePanel.spellSelector.tileSize&&e.getY()>(int)(Reference.gamePanel.spellSelector.currentY+( Reference.windowHeight/32))&&e.getY()<(int)(Reference.gamePanel.spellSelector.currentY+( Reference.windowHeight/32))+Reference.gamePanel.spellSelector.tileSize){
-						Reference.gamePanel.player.spellCast = (i+1)*10;
+						if(Reference.gamePanel.spellSelector.spellSet == Reference.gamePanel.spellSelector.TERRAFORM){
+							if(i<3){
+								Reference.gamePanel.player.spellCast = (i+1)*10;
+							}
+						}
+						if(Reference.gamePanel.spellSelector.spellSet == Reference.gamePanel.spellSelector.DESTRUCTIVESPELLS){
+							if(i<1){
+								Reference.gamePanel.player.spellCast = i+1;
+							}
+						}
 					}
 				}
 			}else{

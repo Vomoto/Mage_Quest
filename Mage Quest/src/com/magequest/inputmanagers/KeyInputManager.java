@@ -73,16 +73,19 @@ public class KeyInputManager implements KeyListener{
 				Reference.gamePanel.player.spellCast = 0;
 				lastKeyCode = -1;
 			}
-		if(e.getKeyCode()==KeyEvent.VK_2){
+			
+		}
+		if(KeyEvent.VK_2==e.getKeyCode()){
 			if(e.getKeyCode()!=lastKeyCode){
 				Reference.gamePanel.player.spellCast = 1;
+				Reference.gamePanel.spellSelector.active = true;
+				Reference.gamePanel.spellSelector.spellSet = Reference.gamePanel.spellSelector.DESTRUCTIVESPELLS;
 				lastKeyCode = e.getKeyCode();
 			}else{
 				Reference.gamePanel.player.spellCast = 0;
+				Reference.gamePanel.spellSelector.active = false;
 				lastKeyCode = -1;
 			}
-			
-		}
 			
 		}
 		if(e.getKeyCode()==KeyEvent.VK_F){

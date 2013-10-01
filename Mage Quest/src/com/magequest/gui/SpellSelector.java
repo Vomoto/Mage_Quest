@@ -38,6 +38,7 @@ public class SpellSelector extends Component{
 	
 	
 	public int TERRAFORM = 1;
+	public int DESTRUCTIVESPELLS = 2;
 	
 
 	public SpellSelector() {
@@ -46,13 +47,20 @@ public class SpellSelector extends Component{
 	public void draw(Graphics g){
 		g.setColor(new Color(0,0,0,150));
 		g.fillRect(currentX, (int)currentY, width, height);
-		if(spellSet != 0){
+		if(spellSet == 1){
 			for(int i = 0; i<=10;i++){
 				try{
 					g.drawImage(Reference.terrain[i][0], (int)(((i+1)*(width/11.5))+currentX), (int)(currentY+( Reference.windowHeight/32)),tileSize,tileSize, null);
 				}catch(Exception e){
 					
 				}
+			}
+		}
+
+		if(spellSet == 2){
+			try{
+				g.drawImage(Reference.explosion[0][8], (int)(((width/11.5))+currentX), (int)(currentY+( Reference.windowHeight/32)),tileSize,tileSize, null);
+			}catch(Exception e){
 			}
 		}
 	}

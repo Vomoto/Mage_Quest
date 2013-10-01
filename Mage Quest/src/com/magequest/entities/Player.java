@@ -31,10 +31,11 @@ public class Player extends Component{
 	public int width = 10;
 	public int height = 10;
 	
-	public  int speed = Reference.playerSpeed;
+	public int speed = Reference.playerSpeed;
 	
-	public  boolean sprinting = false;
-	public  int spellCast = 0;
+	public boolean sprinting = false;
+	public int spellCast = 0;
+	public int lastSpellCast = 0;
 	
 	public  double hypoto;
 
