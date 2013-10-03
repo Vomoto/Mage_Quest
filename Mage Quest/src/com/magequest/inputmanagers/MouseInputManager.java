@@ -88,7 +88,7 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 		}
 		startX = e.getX();
 		startY = e.getY();
-		
+		System.out.println(Reference.gamePanel.mainWorld.map[(int)(e.getPoint().getX()+Reference.gamePanel.offX)/Reference.gamePanel.mainWorld.squareSize][ (int)(e.getPoint().getY()+Reference.gamePanel.offY)/Reference.gamePanel.mainWorld.squareSize]);
 		
 	}
 
