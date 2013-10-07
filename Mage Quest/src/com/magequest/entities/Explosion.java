@@ -36,16 +36,17 @@ public class Explosion extends Component{
 	
 	public void draw(Graphics g,Explosion expl){
 		if(a<3){
-			if(b>=9){
-				a++;
-				b=0;
-			}else{
+			if(b<=9){
 				g.drawImage(Reference.explosion[a][b], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
 				b++;
+			}else{
+				a++;
+				b=0;
+				g.drawImage(Reference.explosion[a][b], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
 			}
 		g.drawImage(Reference.explosionCircle, (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
 		}else{
-			Reference.gamePanel.removeExplosion(this);
+			//Reference.gamePanel.removeExplosion(this);
 		}
 	}
 

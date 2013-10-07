@@ -131,7 +131,7 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	}
 	
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		if(e.getWheelRotation()<0&&Reference.gamePanel.mainWorld.squareSize>32){
+		if(e.getWheelRotation()<0&&Reference.gamePanel.mainWorld.squareSize>1){
 			Reference.gamePanel.mainWorld.squareSize+=e.getWheelRotation();
 		}
 		if(e.getWheelRotation()>0&&Reference.gamePanel.mainWorld.squareSize<=100){

@@ -14,6 +14,8 @@ import com.magequest.entities.Explosion;
 import com.magequest.entities.Player;
 import com.magequest.envirement.MainWorld;
 import com.magequest.gui.SpellSelector;
+import com.magequest.magic.Spell;
+import com.magequest.magic.SpellBomb;
 
 /**
  * <b>Game Panel Class</b>
@@ -30,6 +32,9 @@ public class GamePanel extends JPanel{
 
     List<Explosion> explosions = new ArrayList<Explosion>();
     List<Explosion> expltbr = new ArrayList<Explosion>();
+    List<Spell> spells = new ArrayList<Spell>();
+    List<Spell> spellstbr = new ArrayList<Spell>();
+    Spell lastSpell;
     Explosion lastExplosion;
     
 	public MainWorld mainWorld = new MainWorld();
@@ -54,28 +59,30 @@ public class GamePanel extends JPanel{
 		mainWorld.draw(g);
 		player.draw(g);
 		g.setColor(Color.black);
-		for(Explosion expl : explosions){
-			expl.draw(g,expl);
+		for(Spell spell : spells){
+			spell.draw(g);
 		}
-		explosions.remove(expltbr);
-		expltbr = new ArrayList<Explosion>();
+		spells.remove(spellstbr);
+		spellstbr = new ArrayList<Spell>();
 		g.drawString(Reference.fullTitle,0,15);
 		g.drawString(Reference.fps, 0, 30);
 		//g.dispose();
-		if(explosions.size()>= 500){
-			lastExplosion = explosions.get(explosions.size()-1);
-			explosions = new ArrayList<Explosion>();
-			explosions.add(lastExplosion);
+		if(spells.size()>= 500){
+			lastSpell = spells.get(spells.size()-1);
+			spells = new ArrayList<Spell>();
+			spells.add(lastSpell);
 		}
 		spellSelector.draw(g);
 	}
 	
 	public void addExplosion(int x, int y, int size){
-		explosions.add(new Explosion(x,y,size));
+		//explosions.add(new Explosion(x,y,size));
+		spells.add(new SpellBomb(x,y,size));
 	}
 	
-	public void removeExplosion(Explosion e){
-		expltbr.add(e);
+	public void removeExplosion(Spell s){
+		//expltbr.add(e);
+		spellstbr.add(s);
 	}
 	
 	public void update(float interpolation){
