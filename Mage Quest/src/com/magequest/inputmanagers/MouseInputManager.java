@@ -2,6 +2,8 @@ package com.magequest.inputmanagers;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.event.MouseInputAdapter;
 
@@ -14,7 +16,7 @@ import com.magequest.main.Reference;
  * <p></p>
  * @author Cooper Mahring
  */
-public class MouseInputManager extends MouseInputAdapter implements MouseMotionListener{
+public class MouseInputManager extends MouseInputAdapter implements MouseMotionListener, MouseWheelListener{
 	
 	private int dx;
 	private int dy;
@@ -88,7 +90,6 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 		}
 		startX = e.getX();
 		startY = e.getY();
-		System.out.println(Reference.gamePanel.mainWorld.map[(int)(e.getPoint().getX()+Reference.gamePanel.offX)/Reference.gamePanel.mainWorld.squareSize][ (int)(e.getPoint().getY()+Reference.gamePanel.offY)/Reference.gamePanel.mainWorld.squareSize]);
 		
 	}
 
@@ -127,5 +128,14 @@ public class MouseInputManager extends MouseInputAdapter implements MouseMotionL
 	public void mouseMoved(MouseEvent e){
 		startX = e.getX();
 		startY = e.getY();
+	}
+	
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		if(e.getWheelRotation()<0&&Reference.gamePanel.mainWorld.squareSize>32){
+			Reference.gamePanel.mainWorld.squareSize+=e.getWheelRotation();
+		}
+		if(e.getWheelRotation()>0&&Reference.gamePanel.mainWorld.squareSize<=100){
+			Reference.gamePanel.mainWorld.squareSize+=e.getWheelRotation();
+		}
 	}
 }

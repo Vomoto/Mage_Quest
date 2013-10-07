@@ -52,6 +52,8 @@ public class Reference {
 	public static BufferedImage terrainModeratesWhole;
 	public static BufferedImage[][] terrainModerates = new BufferedImage[10][10];
 	
+	public static BufferedImage explosionCircle;
+	
 	public static Random randomGenerator = new Random();
 
 	public Reference() {
@@ -99,6 +101,14 @@ public class Reference {
 				}
 			}
 		}
+		
+		try {
+			explosionCircle = ImageIO.read(new File("res/Alchemist_Circle1.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static void exit(){

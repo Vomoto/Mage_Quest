@@ -116,11 +116,11 @@ public class MainWorld {
 				map[x-1][y] = 200+Reference.randomGenerator.nextInt(2);
 			}
 			if((map[x+1][y]==TOP_GRASS_BOTTOM_WATER1||map[x+1][y]==TOP_GRASS_BOTTOM_WATER2)&&(map[x][y-1]==TOP_GRASS_BOTTOM_WATER1||map[x][y-1]==TOP_GRASS_BOTTOM_WATER2)){
-				map[x+1][y] = CURVE_LEFT_BOTTOM_WATER_SHORT;
+				map[x+1][y] = CURVE_LEFT_BOTTOM_WATER;
 				map[x+1][y-1] = BOTTOM_LEFT_WATER;
 			}
 			if((map[x-1][y]==TOP_GRASS_BOTTOM_WATER1||map[x-1][y]==TOP_GRASS_BOTTOM_WATER2)&&(map[x][y-1]==TOP_GRASS_BOTTOM_WATER1||map[x][y-1]==TOP_GRASS_BOTTOM_WATER2)){
-				map[x-1][y] = CURVE_RIGHT_BOTTOM_WATER_SHORT;
+				map[x-1][y] = CURVE_LEFT_BOTTOM_WATER;
 				map[x-1][y-1] = BOTTOM_RIGHT_WATER;
 			}
 			

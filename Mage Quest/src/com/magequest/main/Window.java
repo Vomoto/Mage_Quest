@@ -37,6 +37,7 @@ public class Window extends JFrame{
 		Reference.windowHeight = getHeight();
 		addKeyListener(new KeyInputManager());
 		addMouseListener(new MouseInputManager());
+		addMouseWheelListener(new MouseInputManager());
 		addMouseMotionListener(new MouseInputManager());
 	}
 	

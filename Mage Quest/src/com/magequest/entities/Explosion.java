@@ -36,13 +36,14 @@ public class Explosion extends Component{
 	
 	public void draw(Graphics g,Explosion expl){
 		if(a<3){
-			if(b>=10){
+			if(b>=9){
 				a++;
 				b=0;
 			}else{
 				g.drawImage(Reference.explosion[a][b], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
 				b++;
 			}
+		g.drawImage(Reference.explosionCircle, (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
 		}else{
 			Reference.gamePanel.removeExplosion(this);
 		}
