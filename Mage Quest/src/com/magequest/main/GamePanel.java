@@ -62,7 +62,10 @@ public class GamePanel extends JPanel{
 		for(Spell spell : spells){
 			spell.draw(g);
 		}
-		spells.remove(spellstbr);
+		//System.out.println(spellstbr);
+		for(Spell spell : spellstbr){
+			spells.remove(spell);
+		}
 		spellstbr = new ArrayList<Spell>();
 		g.drawString(Reference.fullTitle,0,15);
 		g.drawString(Reference.fps, 0, 30);

@@ -21,6 +21,13 @@ public class SpellBomb extends Spell{
 		size = size1;
 	}
 	
+	/*
+	 * Alchemist circle needs to be orange!
+	 * 
+	 * 
+	 * 
+	 * */
+	
 	public void draw(Graphics g){
 		g.drawImage(Reference.explosionCircle, (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
 		if(c>100){
