@@ -33,7 +33,7 @@ public class Reference {
 	public static int playerSprintSpeed = 200;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.21";
+	public static String version = "0.0.22";
 	public static String fps = "0";
 	public static String fullTitle = "";
 	
@@ -51,6 +51,9 @@ public class Reference {
 	public static BufferedImage[][] terrain = new BufferedImage[10][10];
 	public static BufferedImage terrainModeratesWhole;
 	public static BufferedImage[][] terrainModerates = new BufferedImage[10][10];
+	public static BufferedImage ACBombWhole;
+	public static BufferedImage[][] ACBomb = new BufferedImage[6][10];
+	
 	
 	public static BufferedImage explosionCircle;
 	
@@ -74,6 +77,7 @@ public class Reference {
 			explosionWhole = ImageIO.read(new File("res/explosion2.png"));
 			terrainWhole = ImageIO.read(new File("res/Terrain.png"));
 			terrainModeratesWhole = ImageIO.read(new File("res/TerrainModerates.png"));
+			ACBombWhole = ImageIO.read(new File("res/AC_Bomb.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -98,6 +102,15 @@ public class Reference {
 					terrainModerates[a][b] = terrainModeratesWhole.getSubimage(16*b, 16*a, 16, 16);
 				}catch(Exception e){
 					
+				}
+			}
+		}
+		for(int a = 0;a<6;a++){
+			for(int b = 0;b<10;b++){
+				try{
+					ACBomb[a][b] = ACBombWhole.getSubimage(64*b, 64*a, 64, 64);
+				}catch(Exception e){
+					System.out.println(a+"  "+b);
 				}
 			}
 		}

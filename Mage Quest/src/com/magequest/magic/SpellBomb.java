@@ -29,7 +29,32 @@ public class SpellBomb extends Spell{
 	 * */
 	
 	public void draw(Graphics g){
-		g.drawImage(Reference.explosionCircle, (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
+		if(a<6&&c<63){
+			if(b<10){
+				if(a==5){
+					if(b<2){
+						g.drawImage(Reference.ACBomb[a][b], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
+						b++;
+					}else{
+						a++;
+						g.drawImage(Reference.ACBomb[5][2], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
+					}
+				}else{
+					g.drawImage(Reference.ACBomb[a][b], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
+					b++;
+				}
+			}else{
+				a++;
+				b=0;
+				g.drawImage(Reference.ACBomb[a][b], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
+			}
+		}else if(c==65){
+			a = 0;
+			b = 0;
+		}
+		if(c>=58){
+			g.drawImage(Reference.ACBomb[5][2], (x-(size/2))-Reference.gamePanel.offX, (y-(size/2))-Reference.gamePanel.offY, size, size, null);
+		}
 		if(c>100){
 			if(a<3){
 				if(b<=9){
