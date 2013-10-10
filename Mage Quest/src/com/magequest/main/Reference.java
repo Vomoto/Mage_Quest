@@ -13,7 +13,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import com.magequest.savesmanagers.*;;
+import com.magequest.savesmanagers.*;
 
 /**
  * <b>Reference Class</b>
@@ -33,7 +33,7 @@ public class Reference {
 	public static int playerSprintSpeed = 200;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.24";
+	public static String version = "0.0.25";
 	public static String fps = "0";
 	public static String fullTitle = "";
 	

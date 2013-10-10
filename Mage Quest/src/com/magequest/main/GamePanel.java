@@ -119,7 +119,7 @@ public class GamePanel extends JPanel{
 			s.update();
 		}
 		for(Enemy e : enemies){
-			e.update();
+			e.update(interpolation);
 		}
 		for(Enemy e : enemiestbr){
 			enemies.remove(e);

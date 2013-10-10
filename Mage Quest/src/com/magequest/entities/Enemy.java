@@ -13,8 +13,8 @@ import java.awt.Graphics;
  */
 public abstract class Enemy {
 	
-	int x = 0;
-	int y = 0;
+	float x = 0;
+	float y = 0;
 	int width = 0;
 	int height = 0;
 	int health = 0;
@@ -23,7 +23,7 @@ public abstract class Enemy {
 	public Enemy() {
 	}
 	
-	public void update(){
+	public void update(float delta){
 	}
 	
 	public void draw(Graphics g){
@@ -42,11 +42,11 @@ public abstract class Enemy {
 	}
 	
 	public int getX(){
-		return x;
+		return (int)x;
 	}
 	
 	public int getY(){
-		return y;
+		return (int)y;
 	}
 	public String getType(){
 		return type;

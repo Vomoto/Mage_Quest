@@ -55,10 +55,11 @@ public class Save {
 		}
 				for(Enemy e : Reference.gamePanel.getEnemies()){
 					try {
+						writer.write("enemy ");
 						writer.write(e.getType() + " ");
 						writer.write(e.getX()+" ");
 						writer.write(e.getY()+" ");
-						writer.write(e.getHealth()+" ");
+						writer.write(e.getHealth()+"\n");
 						
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

@@ -62,9 +62,15 @@ public class Player extends Component{
 				
 			}
 		}
-		
 		g.setColor(Color.blue);
 		g.fillOval(((int)Math.ceil(x/1.0))-Reference.gamePanel.offX,((int)Math.ceil(y/1.0))-Reference.gamePanel.offY, width, height);
+		g.setColor(Color.red);
+		g.fillRect((((int)Math.ceil(x/1.0))-Reference.gamePanel.offX)-width,(((int)Math.ceil(y/1.0))-Reference.gamePanel.offY)+height+3, width*3, height/2);
+		g.setColor(Color.blue);
+		g.fillRect((((int)Math.ceil(x/1.0))-Reference.gamePanel.offX)-width,(((int)Math.ceil(y/1.0))-Reference.gamePanel.offY)+height+3,(int)(((double)health/100)*width*3), height/2);
+		g.setColor(Color.black);
+		g.drawRect((((int)Math.ceil(x/1.0))-Reference.gamePanel.offX)-width,(((int)Math.ceil(y/1.0))-Reference.gamePanel.offY)+height+2, (width*3), (height/2)+1);
+		
 	}
 	
 	public  void update(){
@@ -148,6 +154,9 @@ public class Player extends Component{
 				if(tempx>0&&tempx<(Reference.gamePanel.mainWorld.map.length*32)-Reference.gamePanel.offX){
 					x-=speed * GameLoop.delta;
 				}
+			}
+			if(health<=0){
+				health = 100;
 			}
 		}
 		centerX = x+(width/2);

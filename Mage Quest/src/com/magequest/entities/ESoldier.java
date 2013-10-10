@@ -36,18 +36,33 @@ public class ESoldier extends Enemy{
 	
 	public void draw(Graphics g){
 		g.setColor(Color.red);
-		g.fillOval(((int)Math.ceil(x/1.0))-Reference.gamePanel.offX,((int)Math.ceil(y/1.0))-Reference.gamePanel.offY, width, height);
+		g.fillOval(((int)Math.ceil(x/1.0)-Reference.gamePanel.offX),((int)Math.ceil(y/1.0))-Reference.gamePanel.offY, width, height);
 		g.setColor(Color.red);
-		g.fillRect(x-(width/2), y+height+3, width*2, 5);
+		g.fillRect((((int)Math.ceil(x/1.0))-Reference.gamePanel.offX)-width,(((int)Math.ceil(y/1.0))-Reference.gamePanel.offY)+height+3, width*3, height/2);
 		g.setColor(Color.blue);
-		g.fillRect(x-(width/2), y+height+3, (int)(((double)health/100)*width*2), 5);
+		g.fillRect((((int)Math.ceil(x/1.0))-Reference.gamePanel.offX)-width,(((int)Math.ceil(y/1.0))-Reference.gamePanel.offY)+height+3,(int)(((double)health/100)*width*3), height/2);
 		g.setColor(Color.black);
-		g.drawRect((x-(width/2))-1, (y+height+3)-1, (width*2)+1, 5+1);
+		g.drawRect((((int)Math.ceil(x/1.0))-Reference.gamePanel.offX)-width,(((int)Math.ceil(y/1.0))-Reference.gamePanel.offY)+height+2, (width*3), (height/2)+1);
 	}
 	
-	public void update(){
+	public void update(float delta){
+		if(Reference.gamePanel.player.x>x){
+			x+=delta*Reference.playerSpeed/2;
+		}
+		if(Reference.gamePanel.player.x<x){
+			x-=delta*Reference.playerSpeed/2;
+		}
+		if(Reference.gamePanel.player.y>y){
+			y+=delta*Reference.playerSpeed/2;
+		}
+		if(Reference.gamePanel.player.y<y){
+			y-=delta*Reference.playerSpeed/2;
+		}
 		if(health <= 0){
 			Reference.gamePanel.removeEnemy(this);
+		}
+		if(Math.pow(((int)(Reference.gamePanel.player.centerX - x))-Reference.gamePanel.offX,2)+Math.pow(((int)(Reference.gamePanel.player.centerY - y))-Reference.gamePanel.offY,2)<=500){
+			Reference.gamePanel.player.health--;
 		}
 	}
 
