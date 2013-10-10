@@ -10,7 +10,8 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import com.magequest.entities.Explosion;
+import com.magequest.entities.ESoldier;
+import com.magequest.entities.Enemy;
 import com.magequest.entities.Player;
 import com.magequest.envirement.MainWorld;
 import com.magequest.gui.SpellSelector;
@@ -30,14 +31,15 @@ public class GamePanel extends JPanel{
 	public Player player = new Player(150,150);
 	public SpellSelector spellSelector = new SpellSelector();
 
-    List<Explosion> explosions = new ArrayList<Explosion>();
-    List<Explosion> expltbr = new ArrayList<Explosion>();
     List<Spell> spells = new ArrayList<Spell>();
     List<Spell> spellstbr = new ArrayList<Spell>();
     Spell lastSpell;
-    Explosion lastExplosion;
+    List<Enemy> enemies = new ArrayList<Enemy>();
+    List<Enemy> enemiestbr = new ArrayList<Enemy>();
+    List<Enemy> enemiesBuffer = new ArrayList<Enemy>();
     
-	public MainWorld mainWorld = new MainWorld();
+    
+	public MainWorld mainWorld;
 	
 	public int ax = 0;
 	public int by = 0;
@@ -51,6 +53,11 @@ public class GamePanel extends JPanel{
 
 	public GamePanel() {
 		super();
+		addEnemy("soldier",500,500);
+		addEnemy("soldier",500,600);
+		addEnemy("soldier",600,500);
+		addEnemy("soldier",600,600);
+		mainWorld = new MainWorld();
 	}
 	
 	public void paint(Graphics g){
@@ -58,11 +65,13 @@ public class GamePanel extends JPanel{
 		g.fillRect(0, 0, Reference.windowWidth, Reference.windowHeight);
 		mainWorld.draw(g);
 		player.draw(g);
+		for(Enemy e : enemies){
+			e.draw(g);
+		}
 		g.setColor(Color.black);
 		for(Spell spell : spells){
 			spell.draw(g);
 		}
-		//System.out.println(spellstbr);
 		for(Spell spell : spellstbr){
 			spells.remove(spell);
 		}
@@ -83,7 +92,7 @@ public class GamePanel extends JPanel{
 		spells.add(new SpellBomb(x,y,size));
 	}
 	
-	public void removeExplosion(Spell s){
+	public void removeSpell(Spell s){
 		//expltbr.add(e);
 		spellstbr.add(s);
 	}
@@ -109,6 +118,39 @@ public class GamePanel extends JPanel{
 		}
 		player.update();
 		spellSelector.update(interpolation);
+		for(Spell s : spells){
+			s.update();
+		}
+		for(Enemy e : enemies){
+			e.update();
+		}
+		for(Enemy e : enemiestbr){
+			enemies.remove(e);
+		}
+	}
+
+	/**
+	 * @param string
+	 * @param i
+	 * @param j
+	 */
+	public void addEnemy(String name, int x, int y) {
+		if(name == "soldier"){
+			enemies.add(new ESoldier(x,y));
+		}
+		
+	}
+	
+	public void removeEnemy(Enemy e){
+		enemiestbr.add(e);
+	}
+	
+	public void doDamageToEnemies(int x, int y){
+		for(Enemy e: enemies){
+			if(e.getX()<x+40&&e.getX()>x-40&&e.getY()>y-40&&e.getY()<y+40){
+				e.removeHealth(50);
+			}
+		}
 	}
 
 }

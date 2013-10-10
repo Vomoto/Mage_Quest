@@ -38,6 +38,8 @@ public class Player extends Component{
 	public int lastSpellCast = 0;
 	
 	public  double hypoto;
+	
+	int health = 100;
 
 	public Player(int startingX, int startingY) {
 		x = startingX;

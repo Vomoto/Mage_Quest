@@ -20,12 +20,17 @@ public abstract class Spell {
 	int y = 0;
 	
 	int size = 0;
+	int circleSize = 0;
 
 	public Spell() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public void draw(Graphics g){
+		
+	}
+	
+	public void update(){
 		
 	}
 
