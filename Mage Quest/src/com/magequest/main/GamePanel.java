@@ -34,7 +34,7 @@ public class GamePanel extends JPanel{
     List<Spell> spells = new ArrayList<Spell>();
     List<Spell> spellstbr = new ArrayList<Spell>();
     Spell lastSpell;
-    List<Enemy> enemies = new ArrayList<Enemy>();
+    public List<Enemy> enemies = new ArrayList<Enemy>();
     List<Enemy> enemiestbr = new ArrayList<Enemy>();
     List<Enemy> enemiesBuffer = new ArrayList<Enemy>();
     
@@ -53,11 +53,8 @@ public class GamePanel extends JPanel{
 
 	public GamePanel() {
 		super();
-		addEnemy("soldier",500,500);
-		addEnemy("soldier",500,600);
-		addEnemy("soldier",600,500);
-		addEnemy("soldier",600,600);
 		mainWorld = new MainWorld();
+		enemies.addAll(Reference.load.loadEnemies(mainWorld.save));
 	}
 	
 	public void paint(Graphics g){
@@ -141,8 +138,20 @@ public class GamePanel extends JPanel{
 		
 	}
 	
+	public void addEnemy(Enemy e){
+		enemies.add(e);
+	}
+	
+	public void addEnemy(List<Enemy> e){
+		enemies.addAll(e);
+	}
+	
 	public void removeEnemy(Enemy e){
 		enemiestbr.add(e);
+	}
+	
+	public List<Enemy> getEnemies(){
+		return enemies;
 	}
 	
 	public void doDamageToEnemies(int x, int y){

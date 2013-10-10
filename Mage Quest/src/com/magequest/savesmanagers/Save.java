@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
+import com.magequest.entities.Enemy;
 import com.magequest.main.Reference;
 
 /**
@@ -52,6 +53,24 @@ public class Save {
 				}
 				
 		}
+				for(Enemy e : Reference.gamePanel.getEnemies()){
+					try {
+						writer.write(e.getType() + " ");
+						writer.write(e.getX()+" ");
+						writer.write(e.getY()+" ");
+						writer.write(e.getHealth()+" ");
+						
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				try {
+					writer.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	}
 	
 	public void newSave(String world, String saveName){
@@ -79,7 +98,20 @@ public class Save {
 			}
 			
 		}
-		
+		try{
+			writer.write("enemy "+"soldier" + " 500"+" 500"+" 100\n");
+			writer.write("enemy "+"soldier" + " 500"+" 600"+" 100\n");
+			writer.write("enemy "+"soldier" + " 600"+" 500"+" 100\n");
+			writer.write("enemy "+"soldier" + " 600"+" 600"+" 100\n");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		try {
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

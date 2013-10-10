@@ -22,6 +22,16 @@ public class ESoldier extends Enemy{
 		y = y1;
 		width = 10;
 		height = 10;
+		type = "soldier";
+	}
+	
+	public ESoldier(int x1, int y1, int h){
+		health = h;
+		x = x1;
+		y = y1;
+		width = 10;
+		height = 10;
+		type = "soldier";
 	}
 	
 	public void draw(Graphics g){

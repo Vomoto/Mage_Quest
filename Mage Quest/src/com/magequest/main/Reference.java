@@ -33,7 +33,7 @@ public class Reference {
 	public static int playerSprintSpeed = 200;
 	
 	public static String title = "Mage Quest";
-	public static String version = "0.0.23";
+	public static String version = "0.0.24";
 	public static String fps = "0";
 	public static String fullTitle = "";
 	

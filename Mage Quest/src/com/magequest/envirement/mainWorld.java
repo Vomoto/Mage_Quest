@@ -48,7 +48,12 @@ public class MainWorld {
 
 	public MainWorld() {
 		map = Reference.load.LoadSave(save);
-		
+		try{
+			//Reference.gamePanel.enemies.addAll(Reference.load.loadEnemies(save));
+		}catch(Exception e){
+				System.out.println("no enemies loaded");
+				e.printStackTrace();
+			}
 		}
 	
 	public void draw(Graphics g){

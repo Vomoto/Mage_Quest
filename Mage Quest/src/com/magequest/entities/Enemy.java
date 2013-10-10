@@ -3,7 +3,6 @@
  */
 package com.magequest.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -19,6 +18,7 @@ public abstract class Enemy {
 	int width = 0;
 	int height = 0;
 	int health = 0;
+	String type = "";
 
 	public Enemy() {
 	}
@@ -47,6 +47,9 @@ public abstract class Enemy {
 	
 	public int getY(){
 		return y;
+	}
+	public String getType(){
+		return type;
 	}
 
 }
